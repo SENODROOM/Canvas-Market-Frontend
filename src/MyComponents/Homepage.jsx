@@ -1,16 +1,68 @@
+import { useEffect } from "react";
 import mobile from '../Images/mobile.jpg';
 import sources from '../Images/sources.jpg';
 import cards from '../Images/cards.jpg';
 
 function Homepage() {
 
-    // Dynamic image arrays using Picsum (works 100%)
-    const artImages = Array.from({ length: 6 }, (_, i) =>
-        `https://picsum.photos/600/600?random=${i + 1}`
+    // ================= STATS ANIMATION =================
+   useEffect(() => {
+    const section = document.querySelector(".mid");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(section); // 👑 run once only
+                }
+            });
+        },
+        {
+            threshold: 0.4, // 40% visible = trigger
+        }
     );
-    const designImages = Array.from({ length: 6 }, (_, i) =>
-        `https://picsum.photos/600/600?random=${i + 100}`
+
+    if (section) observer.observe(section);
+}, []);
+
+
+   const animateStats = () => {
+    const metricValues = document.querySelectorAll(
+        ".metric-value[data-target]"
     );
+
+    metricValues.forEach((el, index) => {
+        setTimeout(() => {
+            const target = parseFloat(el.dataset.target);
+            let current = 0;
+
+            // 🔍 detect decimal places automatically
+            const decimals = (el.dataset.target.split(".")[1] || "").length;
+
+            const duration = 1200; // total animation time (ms)
+            const steps = 40;
+            const increment = target / steps;
+            const interval = duration / steps;
+
+            const timer = setInterval(() => {
+                current += increment;
+
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+
+                // ✨ format number properly
+                el.textContent =
+                    decimals > 0
+                        ? current.toFixed(decimals)
+                        : Math.round(current).toLocaleString();
+            }, interval);
+        }, index * 200);
+    });
+};
+
 
     return (
         <main>
@@ -24,50 +76,41 @@ function Homepage() {
                 <p className="text">
                     Muzli is a new-tab browser extension that instantly delivers
                     relevant design stories and inspiration to keep you in the loop.
-                    <a href="#"> More about AU</a>
                 </p>
             </section>
 
             {/* ================= IMAGE SLIDER ================= */}
-            <section className="home-images">
-                <div className="home-images-slider">
+           
 
-                    <div className="a">
-                        {artImages.map((img, i) => (
-                            <img key={i} src={img} alt="art inspiration" loading="lazy" />
-                        ))}
+            {/* ================= MID SECTION (STATS) ================= */}
+            <section className="mid">
+                <div className="intro-metrics">
+    
+                    <div className="metric-item">
+                        <span className="metric-value" data-target="1000">0</span>
+                        <span className="metric-suffix">+</span>
+                        <span className="metric-label">Sellers</span>
                     </div>
 
-                    <div className="b">
-                        {designImages.map((img, i) => (
-                            <img key={i} src={img} alt="design inspiration" loading="lazy" />
-                        ))}
+                    <div className="metric-divider"></div>
+
+                    <div className="metric-item">
+                        <span className="metric-value" data-target="2000">0</span>
+                        <span className="metric-suffix">+</span>
+                        <span className="metric-label">Paintings</span>
                     </div>
 
-                    <div className="a">
-                        {artImages.map((img, i) => (
-                            <img key={i + 10} src={`${img}&sig=${i + 10}`} alt="art inspiration" loading="lazy" />
-                        ))}
+                    <div className="metric-divider"></div>
+
+                    <div className="metric-item">
+                        <span className="metric-value" data-target="2.3">0.0</span> 
+                        <span className="metric-suffix">M +</span>
+                        <span className="metric-label">Reviews</span>
                     </div>
 
-                    <div className="b">
-                        {designImages.map((img, i) => (
-                            <img key={i + 20} src={`${img}&sig=${i + 20}`} alt="design inspiration" loading="lazy" />
-                        ))}
-                    </div>
+                   
 
                 </div>
-            </section>
-
-            {/* ================= MID SECTION ================= */}
-            <section className="mid">
-                <h1 className="sechead">Hand picked inspiration</h1>
-                <p className="para">
-                    Join over <b>700K designers</b>, product managers & developers
-                    to get your daily dose of professionally curated content from
-                    graphic design, tech, art, typography, photography, architecture
-                    and fashion.
-                </p>
             </section>
 
             {/* ================= MOBILE PREVIEW ================= */}
@@ -102,57 +145,11 @@ function Homepage() {
 
                         <p id="para1">
                             Muzli curates the latest content from hundreds of
-                            design, tech & news sources. Choose what interests
-                            you and we will bring the best content together
-                            in one place.
+                            design, tech & news sources.
                         </p>
                     </div>
                 </div>
 
-            </section>
-
-            {/* ================= BACKGROUND SECTION ================= */}
-            <section className="backimg">
-                <h1 className="backh1">Infinite World of Inspiration</h1>
-                <p className="backp">
-                    Loved by hundreds of thousands of designers worldwide,
-                    Muzli is the leading go-to browser extension for creative professionals.
-                </p>
-            </section>
-
-            {/* ================= TESTIMONIALS ================= */}
-            <section className="lh1">
-                <h1 id="lh">Join top world creatives who enjoy AU</h1>
-            </section>
-
-            <section className="ldiv">
-                <div className="ldiv2">
-                    <p>
-                        "I LOVE this app. It makes my mornings productive
-                        with amazing design inspiration."
-                    </p>
-                    <a className="la1" href="#">Waqas Karim</a>
-
-                    <p>
-                        "The best replacement for Chrome new tab.
-                        Clean, fast and no annoying ads."
-                    </p>
-                    <a className="la1" href="#">Hafsa Amin</a>
-                </div>
-
-                <div className="ldiv2">
-                    <p>
-                        "Hi AU, your teamwork is very inspirational for designers,
-                        every morning starts with Muzli!"
-                    </p>
-                    <a className="la1" href="#">Hina Altaf</a>
-
-                    <p>
-                        "The best replacement for Chrome new tab.
-                        Keeps me up-to-date with latest design feeds."
-                    </p>
-                    <a className="la1" href="#">Amina Zafar</a>
-                </div>
             </section>
 
         </main>
