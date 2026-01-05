@@ -1,73 +1,229 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import mobile from '../Images/mobile.jpg';
 import sources from '../Images/sources.jpg';
 import cards from '../Images/cards.jpg';
 
+// Example portfolio data
+const portfolioData = [
+    {
+        id: 1,
+        title: "Project One",
+        description: "Description for project one.",
+        image: mobile,
+        tech: ["React", "CSS", "JS"]
+    },
+    {
+        id: 2,
+        title: "Project Two",
+        description: "Description for project two.",
+        image: sources,
+        tech: ["HTML", "CSS", "JS"]
+    },
+    {
+        id: 3,
+        title: "Project Three",
+        description: "Description for project three.",
+        image: cards,
+        tech: ["React", "Tailwind", "JS"]
+    }
+];
+
 function Homepage() {
+    const carouselRef = useRef(null);
+    const indicatorsRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     // ================= STATS ANIMATION =================
-   useEffect(() => {
-    const section = document.querySelector(".mid");
+    useEffect(() => {
+        const section = document.querySelector(".mid");
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    observer.unobserve(section); // 👑 run once only
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(section);
+                    }
+                });
+            },
+            { threshold: 0.4 }
+        );
+
+        if (section) observer.observe(section);
+    }, []);
+
+    const animateStats = () => {
+        const metricValues = document.querySelectorAll(".metric-value[data-target]");
+        metricValues.forEach((el, index) => {
+            setTimeout(() => {
+                const target = parseFloat(el.dataset.target);
+                let current = 0;
+                const decimals = (el.dataset.target.split(".")[1] || "").length;
+                const duration = 1200;
+                const steps = 40;
+                const increment = target / steps;
+                const interval = duration / steps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    el.textContent = decimals > 0 ? current.toFixed(decimals) : Math.round(current).toLocaleString();
+                }, interval);
+            }, index * 200);
+        });
+    };
+
+    // ================= CAROUSEL LOGIC =================
+    useEffect(() => {
+        const carousel = carouselRef.current;
+        const indicatorsContainer = indicatorsRef.current;
+
+        if (!carousel || !indicatorsContainer) return;
+
+        // Clear any existing content
+        carousel.innerHTML = "";
+        indicatorsContainer.innerHTML = "";
+
+        const createCarouselItem = (data, index) => {
+            const item = document.createElement('div');
+            item.className = 'carousel-item';
+            item.dataset.index = index;
+
+            const techBadges = data.tech.map(tech =>
+                `<span class="tech-badge">${tech}</span>`
+            ).join('');
+
+            item.innerHTML = `
+                <div class="card">
+                    <div class="card-number">0${data.id}</div>
+                    <div class="card-image">
+                        <img src="${data.image}" alt="${data.title}">
+                    </div>
+                    <h3 class="card-title">${data.title}</h3>
+                    <p class="card-description">${data.description}</p>
+                    <div class="card-tech">${techBadges}</div>
+                    <button class="card-cta">Explore</button>
+                </div>
+            `;
+            return item;
+        };
+
+        const initCarousel = () => {
+            portfolioData.forEach((data, index) => {
+                const item = createCarouselItem(data, index);
+                carousel.appendChild(item);
+
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.dataset.index = index;
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            updateCarousel();
+        };
+
+        const updateCarousel = () => {
+            const items = carousel.querySelectorAll('.carousel-item');
+            const indicators = indicatorsContainer.querySelectorAll('.indicator');
+            const totalItems = items.length;
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 1024;
+
+            items.forEach((item, index) => {
+                let offset = index - currentIndex;
+                if (offset > totalItems / 2) offset -= totalItems;
+                if (offset < -totalItems / 2) offset += totalItems;
+                const absOffset = Math.abs(offset);
+                const sign = offset < 0 ? -1 : 1;
+
+                item.style.transform = '';
+                item.style.opacity = '';
+                item.style.zIndex = '';
+                item.style.transition = 'all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)';
+
+                let spacing1 = 400, spacing2 = 600, spacing3 = 750;
+                if (isMobile) {
+                    spacing1 = 280; spacing2 = 420; spacing3 = 550;
+                } else if (isTablet) {
+                    spacing1 = 340; spacing2 = 520; spacing3 = 650;
+                }
+
+                if (absOffset === 0) {
+                    item.style.transform = 'translate(-50%, -50%) translateZ(0) scale(1)';
+                    item.style.opacity = '1';
+                    item.style.zIndex = '10';
+                } else if (absOffset === 1) {
+                    const translateX = sign * spacing1;
+                    const rotation = isMobile ? 25 : 30;
+                    const scale = isMobile ? 0.88 : 0.85;
+                    item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-200px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                    item.style.opacity = '0.8';
+                    item.style.zIndex = '5';
+                } else if (absOffset === 2) {
+                    const translateX = sign * spacing2;
+                    const rotation = isMobile ? 35 : 40;
+                    const scale = isMobile ? 0.75 : 0.7;
+                    item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-350px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                    item.style.opacity = '0.5';
+                    item.style.zIndex = '3';
+                } else if (absOffset === 3) {
+                    const translateX = sign * spacing3;
+                    const rotation = isMobile ? 40 : 45;
+                    const scale = isMobile ? 0.65 : 0.6;
+                    item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-450px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                    item.style.opacity = '0.3';
+                    item.style.zIndex = '2';
+                } else {
+                    item.style.transform = 'translate(-50%, -50%) translateZ(-500px) scale(0.5)';
+                    item.style.opacity = '0';
+                    item.style.zIndex = '1';
                 }
             });
-        },
-        {
-            threshold: 0.4, // 40% visible = trigger
-        }
-    );
 
-    if (section) observer.observe(section);
-}, []);
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        };
 
+        const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % portfolioData.length);
+        const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + portfolioData.length) % portfolioData.length);
+        const goToSlide = (index) => setCurrentIndex(index);
 
-   const animateStats = () => {
-    const metricValues = document.querySelectorAll(
-        ".metric-value[data-target]"
-    );
+        const handleResize = () => updateCarousel();
 
-    metricValues.forEach((el, index) => {
-        setTimeout(() => {
-            const target = parseFloat(el.dataset.target);
-            let current = 0;
+        window.addEventListener('resize', handleResize);
 
-            // 🔍 detect decimal places automatically
-            const decimals = (el.dataset.target.split(".")[1] || "").length;
+        initCarousel();
 
-            const duration = 1200; // total animation time (ms)
-            const steps = 40;
-            const increment = target / steps;
-            const interval = duration / steps;
+        // Cleanup
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [currentIndex]);
+    const heroRef = useRef(null);
 
-            const timer = setInterval(() => {
-                current += increment;
+    // ================= PARALLAX EFFECT =================
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.pageYOffset;
+            if (heroRef.current) {
+                heroRef.current.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        };
 
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
+        window.addEventListener('scroll', handleScroll);
 
-                // ✨ format number properly
-                el.textContent =
-                    decimals > 0
-                        ? current.toFixed(decimals)
-                        : Math.round(current).toLocaleString();
-            }, interval);
-        }, index * 200);
-    });
-};
-
-
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
         <main>
-
-            {/* ================= HERO SECTION ================= */}
+            {/* HERO SECTION */}
             <section className="bahubali">
                 <h1 className="mainheading">Designers' Secret Source</h1>
                 <p className="subheading">
@@ -79,79 +235,69 @@ function Homepage() {
                 </p>
             </section>
 
-            {/* ================= IMAGE SLIDER ================= */}
-           
+            {/* CAROUSEL */}
+            <section className="hero" id="home">
+                <div className="carousel-container">
+                    <div className="carousel" id="carousel" ref={carouselRef}></div>
+                    <div className="carousel-indicators" id="indicators" ref={indicatorsRef}></div>
+                </div>
+            </section>
 
-            {/* ================= MID SECTION (STATS) ================= */}
+            {/* STATS SECTION */}
             <section className="mid">
                 <div className="intro-metrics">
-    
                     <div className="metric-item">
                         <span className="metric-value" data-target="1000">0</span>
                         <span className="metric-suffix">+</span>
                         <span className="metric-label">Sellers</span>
                     </div>
-
                     <div className="metric-divider"></div>
-
                     <div className="metric-item">
                         <span className="metric-value" data-target="2000">0</span>
                         <span className="metric-suffix">+</span>
                         <span className="metric-label">Paintings</span>
                     </div>
-
                     <div className="metric-divider"></div>
-
                     <div className="metric-item">
-                        <span className="metric-value" data-target="2.3">0.0</span> 
+                        <span className="metric-value" data-target="2.3">0.0</span>
                         <span className="metric-suffix">M +</span>
                         <span className="metric-label">Reviews</span>
                     </div>
-
-                   
-
                 </div>
             </section>
 
-            {/* ================= MOBILE PREVIEW ================= */}
+            {/* MOBILE PREVIEW */}
             <section id="chuchu">
                 <img id="ia" src={mobile} alt="mobile preview" />
             </section>
 
-            {/* ================= HERO CONTENT ================= */}
+            {/* HERO CONTENT */}
             <section className="hero">
-
                 <div className="herotext">
                     <h1 className="heroh1">
                         Be the first to know <br /> the latest design trends
                     </h1>
-
                     <p id="para1">
                         Staying current is crucial to improve yourself and stay
                         prepared for future trends in design & technology.
                         Learn new skills and get inspired every day.
                     </p>
-
                     <img id="himg2" src={sources} alt="sources" />
                 </div>
 
                 <div className="heroimg">
                     <img id="himg" src={cards} alt="cards preview" />
-
                     <div className="p2">
                         <h1 id="he1">
                             Customizable & <br /> personalized
                         </h1>
-
                         <p id="para1">
                             Muzli curates the latest content from hundreds of
                             design, tech & news sources.
                         </p>
                     </div>
                 </div>
-
             </section>
-
         </main>
     );
 }
