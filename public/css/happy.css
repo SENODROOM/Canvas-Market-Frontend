@@ -1263,19 +1263,6 @@ nav {
    
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(224, 163, 255, 0.04) 0%, transparent 70%);
-    transform: translate(-50%, -50%);
-    animation: heroGlow 10s ease-in-out infinite;
-    z-index: -1;
-}
-
 @keyframes heroGlow {
 
     0%,
