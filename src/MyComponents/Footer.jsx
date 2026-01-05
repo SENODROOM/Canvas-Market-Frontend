@@ -74,8 +74,8 @@ function Footer() {
                 </div>
             </div>
             <div class="container">
-            <p>© <strong>Muhammad Saad Amin</strong> — Free Code Camp Projects</p>
-        </div>
+                <p>© <strong>Canvas Market</strong> — All Rights are Reserved</p>
+            </div>
         </footer>
     );
 }
