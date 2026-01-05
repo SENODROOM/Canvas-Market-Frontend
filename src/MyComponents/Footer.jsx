@@ -1,61 +1,85 @@
-function Footer() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import {
+    faInstagram,
+    faFacebook,
+    faTwitter
+} from "@fortawesome/free-brands-svg-icons";
+
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+import { ProfileInformation } from '../Data/ProfileInfo';
+import { Link } from "react-router-dom";
+import { CustomerCareOptions } from '../Data/footer';
+
+function Footer() {
     return (
-        <>
-            <footer>
-                <div className="blue">
-                    <div className="blu1">
-                        <h1>AU</h1>
-                        <p>Muzli instantly delivers cutting-edge design projects and news each time a new tab is open in your browser.</p>
-                        <p>Discover the best web design inspiration, best websites,
-                            best logos, web trends, best mobiles sites and applications, minimalist websites,
-                            brutalist websites, innovative illustrations, design features, unique websites,
-                            photography projects, and visual art, as well as
-                            opinions and articles from design experts across the web and around the world.</p>
+        <footer>
+            <div className="foot">
+                <div className="footer-contact-us">
+
+                    <div className="footer-contact-us-title">
+                        Follow Us
                     </div>
-                    <div className="blu2">
-                        <h2>Products</h2>
-                        <ul>
-                            <li>
-                                <a href="#" className="li-link2">
-                                    Browser plugin
-                                </a>
-                            </li>
-                            <li><a href="#" className="li-link2"> Inspiration search</a></li>
-                            <li><a href="#" className="li-link2"> Color search</a></li>
-                            <li><a href="#" className="li-link2"> Inspiration </a></li>
-                            <li><a href="#" className="li-link2"> Color Names</a></li>
-                            <li><a href="#" className="li-link2"> Design Jobs</a></li>
-                            <li><a href="#" className="li-link2"> Blog</a></li>
-                        </ul>
-                    </div>
-                    <div className="blu3">
-                        <h2>Follow Us</h2>
-                        <ul>
-                            <li><a href="#" className="li-link2"> Medium</a></li>
-                            <li><a href="#" className="li-link2"> Instagram</a></li>
-                            <li><a href="#" className="li-link2"> Facebook</a></li>
-                            <li><a href="#" className="li-link2">Twitter</a></li>
-                            <li><a href="#" className="li-link2"> Pinterest</a></li>
-                            <li><a href="#" className="li-link2"> LinkedIn</a></li>
-                        </ul>
-                    </div>
-                    <div className="blu4">
-                        <h2>Company</h2>
-                        <ul>
-                            <li><a href="#" className="li-link2">About</a></li>
-                            <li><a href="#" className="li-link2">Privacy policy</a></li>
-                            <li><a href="#" className="li-link2">Terms of service</a></li>
-                            <li><a href="#" className="li-link2">Partner with us</a></li>
-                            <li><a href="#" className="li-link2">Promote Your Job</a></li>
-                        </ul>
+
+                    <div className="footer-contact-us-options">
+
+                        <div className="footer-contact-us-option">
+                            <div className="circle-for-style">
+                                <Link to={ProfileInformation.instagram} target="_blank">
+                                    <FontAwesomeIcon icon={faInstagram} />
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="footer-contact-us-option">
+                            <div className="circle-for-style">
+                                <Link to={ProfileInformation.facebook} target="_blank">
+                                    <FontAwesomeIcon icon={faFacebook} />
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="footer-contact-us-option">
+                            <div className="circle-for-style">
+                                <Link to={ProfileInformation.twitter} target="_blank">
+                                    <FontAwesomeIcon icon={faTwitter} />
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="footer-contact-us-option">
+                            <div className="circle-for-style">
+                                <Link to={`mailto:${ProfileInformation.email}`}>
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                </Link>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </footer>
-        </>
-    )
-
+                <div className="chuchu-bestoo">
+                    <div className="footer-customer-care-title">
+                        Customer Care
+                    </div>
+                    <div className="footer-customer-care">
+                        {CustomerCareOptions.map((element, index) => (
+                            <div key={index}>
+                                <Link to={element.path}>
+                                    {element.option}
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+            <p>© <strong>Muhammad Saad Amin</strong> — Free Code Camp Projects</p>
+        </div>
+        </footer>
+    );
 }
+
 
 export default Footer;
 
