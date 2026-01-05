@@ -2718,7 +2718,8 @@ footer {
 	transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* Hero Section with 3D Carousel */
+/* Hero Section with 3D Carousel */    
+
 .parent-slider
 {
     margin-top: -70px;
