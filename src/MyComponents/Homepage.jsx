@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import mobile from '../Images/mobile.jpg';
-import sources from '../Images/sources.jpg';
-import cards from '../Images/cards.jpg';
+import mobile from '../Images/image1.jpg';
+import sources from '../Images/image2.jpg';
+import cards from '../Images/image3.jpg';
 
 const portfolioData = [
     { id: 1, title: "Project One", description: "Description for project one.", image: mobile, tech: ["React", "CSS", "JS"] },
@@ -35,7 +35,6 @@ function Homepage() {
 
             item.innerHTML = `
         <div class="card">
-          <div class="card-number">0${data.id}</div>
           <div class="card-image"><img src="${data.image}" alt="${data.title}" /></div>
           <h3 class="card-title">${data.title}</h3>
           <p class="card-description">${data.description}</p>
