@@ -38,6 +38,7 @@
     --text-secondary: #b0b0b0;
     --text-dim: #808080;
     --green: var(--accent-green);
+    --border: rgb(39, 39, 40);
 }
 
 body {
@@ -4163,4 +4164,93 @@ a.info-item {
     background-color: #071627;
     border-radius: 12px;
     font-weight: 300;
+}
+#kutti
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#kutti .left{
+ width:50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+
+
+ 
+}
+#kutti .left h1
+{
+
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--orb-1-color) 0%, var(--orb-2-color) 30%, var(--orb-3-color) 60%, var(--glow-cyan) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: modernGradient 8s ease infinite;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    opacity: 0;
+    animation: slideInFromRight 1.2s ease 0.6s forwards, modernGradient 8s ease 0.6s infinite;
+    text-align: center;
+}
+#kutti .left p
+{ font-size: 20px;
+    text-align: center;
+   
+    line-height: 1.5;
+}
+#kutti .left .button{
+   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+    
+  
+}
+.link-sell
+{
+   padding: 12px 30px;
+    background: linear-gradient(135deg, var(--orb-1-color), var(--orb-2-color));
+    border: none;
+    border-radius: 30px;
+    color: var(--text-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 225, 255, 0.3);
+    text-decoration: none;
+    margin-top: 20px;
+}
+.link-sell:hover{
+     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 225, 255, 0.3);
+}
+#kutti .right
+{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid var(--border);
+    /* padding: 30px; */
+    width: 500px;
+    height: 500px;
+    border-radius: 100%;
+   
+}
+#sell-image
+{
+        width: 96%;
+    height: 96%;
+    border-radius: 100%;
+   
 }
