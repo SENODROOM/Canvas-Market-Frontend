@@ -7,7 +7,11 @@ import { CircularImage, MonetizeSection } from "./MonetizeSection";
 const portfolioData = [
     { id: 1, title: "Project One", description: "Description for project one.", image: mobile, tech: ["React", "CSS", "JS"] },
     { id: 2, title: "Project Two", description: "Description for project two.", image: sources, tech: ["HTML", "CSS", "JS"] },
-    { id: 3, title: "Project Three", description: "Description for project three.", image: cards, tech: ["React", "Tailwind", "JS"] }
+    { id: 3, title: "Project Three", description: "Description for project three.", image: cards, tech: ["React", "Tailwind", "JS"] },
+    { id: 4, title: "Project Three", description: "Description for project three.", image: cards, tech: ["React", "Tailwind", "JS"] },
+    { id: 5, title: "Project Three", description: "Description for project three.", image: cards, tech: ["React", "Tailwind", "JS"] },
+    { id: 6, title: "Project Three", description: "Description for project three.", image: cards, tech: ["React", "Tailwind", "JS"] },
+    { id: 7, title: "Project Three", description: "Description for project three.", image: cards, tech: ["React", "Tailwind", "JS"] }
 ];
 
 function Homepage() {
