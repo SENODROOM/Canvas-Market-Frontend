@@ -4268,14 +4268,15 @@ a.info-item {
 
 .circular-gauge-progress-circle {
     fill: none;
-    stroke: var(--circular-gauge-accent-color);
-    stroke-width: 2;
+    stroke: var(--orb-2-color);
+  
+  stroke-width: 2;
     stroke-linecap: round;
     transform-origin: 50% 50%;
     transform: rotate(90deg);
     transition: stroke-dashoffset 1s ease;
+    
 }
-
 .circular-gauge-label-wrapper {
     position: absolute;
     width: 385px;
@@ -4314,3 +4315,4 @@ a.info-item {
 .circular-gauge-range-input {
     width: 180px;
 }
+
