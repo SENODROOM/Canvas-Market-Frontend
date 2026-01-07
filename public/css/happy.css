@@ -1075,7 +1075,7 @@ nav {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+   
     font-size: 28px;
     font-weight: bold;
     background: linear-gradient(45deg, #4da6ff, #1a75ff);

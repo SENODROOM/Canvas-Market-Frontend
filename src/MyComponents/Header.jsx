@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from "../Images/logo2cut (1).png";
+
 
 function Header() {
   const [menuActive, setMenuActive] = useState(false);
@@ -135,37 +137,10 @@ function Header() {
     <>
       <header className="glass" ref={headerRef}>
         <nav>
-
-          <Link to="/" className="logo">
-            <svg className="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: ' #4da6ff' }} />
-                  <stop offset="50%" style={{ stopColor: '#1a75ff' }} />
-                  <stop offset="100%" style={{ stopColor: 'rgb(0, 120, 255)' }} />
-                </linearGradient>
-              </defs>
-              <circle cx="50" cy="30" r="8" fill="url(#logoGradient)" style={{ opacity: 0.8 }}>
-                <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="30" cy="60" r="6" fill="url(#logoGradient)" style={{ opacity: 0.6 }}>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="70" cy="65" r="7" fill="url(#logoGradient)" style={{ opacity: 0.7 }}>
-                <animate attributeName="opacity" values="0.7;1;0.7" dur="1.8s" repeatCount="indefinite" />
-              </circle>
-              <line x1="50" y1="30" x2="30" y2="60" stroke="url(#logoGradient)" strokeWidth="2" style={{ opacity: 0.6 }}>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
-              </line>
-              <line x1="50" y1="30" x2="70" y2="65" stroke="url(#logoGradient)" strokeWidth="2" style={{ opacity: 0.6 }}>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite" />
-              </line>
-              <line x1="30" y1="60" x2="70" y2="65" stroke="url(#logoGradient)" strokeWidth="2" style={{ opacity: 0.6 }}>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.8s" repeatCount="indefinite" />
-              </line>
-            </svg>
-            CANVAS MARKET
-          </Link>
+<Link to="/" className="logo">
+  <img src={logo} alt="Canvas Market Logo" className="logo-icon" />
+  CANVAS MARKET
+</Link>
 
           <ul className="nav-links">
             <li><Link to="/about" className="li-link">About</Link></li>
