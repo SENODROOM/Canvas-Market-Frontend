@@ -2894,10 +2894,12 @@ body {
 }
 
 .card-tech {
-    display: flex;
+       display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .tech-badge {
@@ -4237,7 +4239,7 @@ a.info-item {
 
 .link-sell:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 225, 255, 0.3);
+   
 }
 
 
