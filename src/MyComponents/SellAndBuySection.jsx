@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CircularGauge from "./Circular Image";
 
-export function MonetizeSection() {
+export function SellAndBuySection() {
   const [active, setActive] = useState("sell");
 
   return (

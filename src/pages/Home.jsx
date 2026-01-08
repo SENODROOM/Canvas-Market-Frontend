@@ -1,5 +1,5 @@
 
-import { MonetizeSection } from "../MyComponents/MonetizeSection";
+import { SellAndBuySection } from "../MyComponents/SellAndBuySection";
 import { Sliders } from "../MyComponents/Slider";
 import { Stats } from "../MyComponents/Stats";
 import { Testimonials } from "../MyComponents/Testimonals";
@@ -14,7 +14,7 @@ function Homepage() {
             </section>
             <Sliders />
             <Stats />
-            <MonetizeSection />
+            <SellAndBuySection />
             <Testimonials />
         </main>
     );

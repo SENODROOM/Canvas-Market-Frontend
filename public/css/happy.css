@@ -4332,7 +4332,7 @@ a.info-item {
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s linear;
     font-size: 0.9rem;
     backdrop-filter: blur(10px);
     width: auto;
@@ -4341,9 +4341,19 @@ a.info-item {
     font-weight: 600;
 }
 
+/* Hover effect: between normal and active */
+.buttonss:hover {
+    background: linear-gradient(45deg, rgba(0, 230, 255, 0.25), rgba(13, 121, 246, 0.15));
+    border-color: rgba(0, 230, 255, 0.3);
+    color: #b1ecff;
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 230, 255, 0.3);
+    font-size: 0.98rem;
+}
 
 .buttonss.active {
     background: linear-gradient(45deg, var(--primary), var(--accent));
+    box-shadow: 0 4px 15px var(--orb-3-color);
     color: white;
     transform: translateY(-4px) scale(1.02);
     display: inline-block;
@@ -4357,7 +4367,6 @@ a.info-item {
     overflow: hidden;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    box-shadow: 0 4px 15px var(--orb-3-color);
 }
 
 .slide-up {
