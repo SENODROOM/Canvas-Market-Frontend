@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import mobile from "../Images/image1.jpg";
-import sources from "../Images/image2.jpg";
-import cards from "../Images/image3.jpg";
-import imago from "../Images/image5.jpg";
-import tango from "../Images/image6.jpg";
-import sango from "../Images/image7.jpg";
-import mango from "../Images/image8.jpg";
-
-export function Sliders() {
-
-  const portfolioData = [
+import mobile from '../Images/image1.jpg';
+import sources from '../Images/image2.jpg';
+import cards from '../Images/image3.jpg';
+import imago from '../Images/image5.jpg';
+import tango from '../Images/image6.jpg';
+import sango from '../Images/image7.jpg';
+import mango from '../Images/image8.jpg';
+import { Link } from 'react-router-dom';
+ export function Sliders()
+ {
+ 
+    const portfolioData = [
     { id: 1, title: "Whispers of Nature", description: "-Muhammad Hassan", image: mobile, tech: ["Nature", "Illustration", "Minimal"] },
     { id: 2, title: "Echoes of the Highlands", description: "-Ayesha Aqeel", image: sources, tech: ["Nature", "Serene", "Landscape Art"] },
     { id: 3, title: "Textured Silence", description: "-Seemal Rubab", image: cards, tech: ["Abstract Art", "Modern", "Texture"] },
@@ -17,37 +18,35 @@ export function Sliders() {
     { id: 5, title: "Masks of Emotion", description: "-Hafsa Amin", image: imago, tech: ["Expressionism", "Theatre Masks", "Abstract Art"] },
     { id: 6, title: "City After Dusk", description: "-Javeria Yasin", image: sango, tech: ["Urban Canvas", "Fine Art", "Moody"] },
     { id: 7, title: "Silent Majesty", description: "-Muhammad Saad Amin", image: mango, tech: ["Concept Art", "Portrait", "Canvas"] }
-  ];
+];
 
-  const carouselRef = useRef(null);
-  const indicatorsRef = useRef(null);
-  const itemsRef = useRef([]);
-  const heroRef = useRef(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+    const carouselRef = useRef(null);
+    const indicatorsRef = useRef(null);
+    const itemsRef = useRef([]); // store created DOM nodes
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    const indicatorsContainer = indicatorsRef.current;
-    if (!carousel || !indicatorsContainer) return;
+    // Create items & indicators once
+    useEffect(() => {
+        const carousel = carouselRef.current;
+        const indicatorsContainer = indicatorsRef.current;
+        if (!carousel || !indicatorsContainer) return;
 
-    carousel.innerHTML = "";
-    indicatorsContainer.innerHTML = "";
-    itemsRef.current = [];
+        // ensure empty initially
+        carousel.innerHTML = "";
+        indicatorsContainer.innerHTML = "";
+        itemsRef.current = [];
 
-    portfolioData.forEach((data, index) => {
-      const item = document.createElement("div");
-      item.className = "carousel-item";
+        portfolioData.forEach((data, index) => {
+            const item = document.createElement('div');
+            item.className = 'carousel-item';
+            item.dataset.index = index;
 
-      const techBadges = data.tech
-        .map(tech => `<span class="tech-badge">${tech}</span>`)
-        .join("");
+            const techBadges = data.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('');
 
-      item.innerHTML = `
+            item.innerHTML = `
         <div class="card">
-          <div class="card-image">
-            <img src="${data.image}" alt="${data.title}" />
-          </div>
+          <div class="card-image"><img src="${data.image}" alt="${data.title}" /></div>
           <h3 class="card-title">${data.title}</h3>
           <p class="card-description">${data.description}</p>
           <div class="card-tech">${techBadges}</div>
@@ -55,86 +54,136 @@ export function Sliders() {
         </div>
       `;
 
-      item.style.transition =
-        "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease";
+            // base transition style so transforms animate
+            item.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, z-index 0s';
 
-      carousel.appendChild(item);
-      itemsRef.current.push(item);
+            carousel.appendChild(item);
+            itemsRef.current.push(item);
 
-      const indicator = document.createElement("div");
-      indicator.className = "indicator";
-      if (index === 0) indicator.classList.add("active");
-      indicator.addEventListener("click", () => setCurrentIndex(index));
-      indicatorsContainer.appendChild(indicator);
-    });
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (index === 0) indicator.classList.add('active');
+            indicator.dataset.index = index;
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
 
-    updateCarouselStyles();
+        // initial layout
+        updateCarouselStyles();
 
-    const handleResize = () => updateCarouselStyles();
-    window.addEventListener("resize", handleResize);
+        // resize listener (debounce lightly)
+        let resizeTimer = null;
+        const handleResize = () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(updateCarouselStyles, 120);
+        };
+        window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        // cleanup
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(resizeTimer);
+        };
+        // run only on mount
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  useEffect(() => {
-    updateCarouselStyles();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentIndex]);
+    // update styles whenever index changes
+    useEffect(() => {
+        updateCarouselStyles();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentIndex]);
 
-  const updateCarouselStyles = () => {
-    const items = itemsRef.current;
-    if (!items.length) return;
+    // helper functions
+    const goToSlide = (index) => {
+        setCurrentIndex(((index % portfolioData.length) + portfolioData.length) % portfolioData.length);
+    };
+    const nextSlide = () => setCurrentIndex(prev => (prev + 1) % portfolioData.length);
+    const prevSlide = () => setCurrentIndex(prev => (prev - 1 + portfolioData.length) % portfolioData.length);
 
-    const isMobile = window.innerWidth <= 768;
-    const isTablet = window.innerWidth <= 1024;
+    // central function that only mutates styles of existing nodes
+    const updateCarouselStyles = () => {
+        const items = itemsRef.current;
+        const totalItems = items.length;
+        if (!items || totalItems === 0) return;
 
-    let spacing1 = 400, spacing2 = 600, spacing3 = 750;
-    if (isMobile) {
-      spacing1 = 280; spacing2 = 420; spacing3 = 550;
-    } else if (isTablet) {
-      spacing1 = 340; spacing2 = 520; spacing3 = 650;
-    }
+        const isMobile = window.innerWidth <= 768;
+        const isTablet = window.innerWidth <= 1024;
 
-    items.forEach((item, index) => {
-      let offset = index - currentIndex;
-      if (offset > items.length / 2) offset -= items.length;
-      if (offset < -items.length / 2) offset += items.length;
+        let spacing1 = 400, spacing2 = 600, spacing3 = 750;
+        if (isMobile) {
+            spacing1 = 280; spacing2 = 420; spacing3 = 550;
+        } else if (isTablet) {
+            spacing1 = 340; spacing2 = 520; spacing3 = 650;
+        }
 
-      const abs = Math.abs(offset);
-      const sign = offset < 0 ? -1 : 1;
+        items.forEach((item, index) => {
+            let offset = index - currentIndex;
+            if (offset > totalItems / 2) offset -= totalItems;
+            if (offset < -totalItems / 2) offset += totalItems;
+            const absOffset = Math.abs(offset);
+            const sign = offset < 0 ? -1 : 1;
 
-      if (abs === 0) {
-        item.style.transform = "translate(-50%, -50%) scale(1)";
-        item.style.opacity = "1";
-        item.style.zIndex = "10";
-      } else if (abs === 1) {
-        item.style.transform = `translate(-50%, -50%) translateX(${sign * spacing1}px) rotateY(${-sign * 30}deg) scale(0.85)`;
-        item.style.opacity = "0.85";
-        item.style.zIndex = "5";
-      } else if (abs === 2) {
-        item.style.transform = `translate(-50%, -50%) translateX(${sign * spacing2}px) rotateY(${-sign * 40}deg) scale(0.7)`;
-        item.style.opacity = "0.5";
-        item.style.zIndex = "3";
-      } else {
-        item.style.opacity = "0";
-        item.style.zIndex = "1";
-      }
-    });
+            item.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
 
-    indicatorsRef.current
-      ?.querySelectorAll(".indicator")
-      .forEach((el, i) => el.classList.toggle("active", i === currentIndex));
-  };
+            if (absOffset === 0) {
+                item.style.transform = 'translate(-50%, -50%) translateZ(0) scale(1)';
+                item.style.opacity = '1';
+                item.style.zIndex = '10';
+            } else if (absOffset === 1) {
+                const translateX = sign * spacing1;
+                const rotation = isMobile ? 25 : 30;
+                const scale = isMobile ? 0.88 : 0.85;
+                item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-200px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                item.style.opacity = '0.85';
+                item.style.zIndex = '5';
+            } else if (absOffset === 2) {
+                const translateX = sign * spacing2;
+                const rotation = isMobile ? 35 : 40;
+                const scale = isMobile ? 0.75 : 0.7;
+                item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-350px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                item.style.opacity = '0.5';
+                item.style.zIndex = '3';
+            } else if (absOffset === 3) {
+                const translateX = sign * spacing3;
+                const rotation = isMobile ? 40 : 45;
+                const scale = isMobile ? 0.65 : 0.6;
+                item.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(-450px) rotateY(${-sign * rotation}deg) scale(${scale})`;
+                item.style.opacity = '0.3';
+                item.style.zIndex = '2';
+            } else {
+                item.style.transform = 'translate(-50%, -50%) translateZ(-500px) scale(0.5)';
+                item.style.opacity = '0';
+                item.style.zIndex = '1';
+            }
+        });
 
-  return (
-    <div className="parent-slider">
-      <section className="hero" id="home">
-        <div className="carousel-container" ref={heroRef}>
-          <div className="carousel" ref={carouselRef}></div>
-          <div className="carousel-indicators" ref={indicatorsRef}></div>
-        </div>
-      </section>
-    </div>
-  );
+        // update indicators active state
+        const indicators = indicatorsRef.current?.querySelectorAll('.indicator') || [];
+        indicators.forEach((ind, i) => ind.classList.toggle('active', i === currentIndex));
+    
 }
+ const heroRef = useRef(null);
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.pageYOffset;
+            if (heroRef.current) heroRef.current.style.transform = ``;
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+return(
+    <>
+     <div className="parent-slider">
+                {/* CAROUSEL */}
+                <section className="hero" id="home">
+
+                    <div className="carousel-container" ref={heroRef}>
+                        <div className="carousel" id="carousel" ref={carouselRef}></div>
+                        <div className="carousel-indicators" id="indicators" ref={indicatorsRef}></div>
+                    </div>
+                </section>
+            </div>
+    </>
+)
+ }
