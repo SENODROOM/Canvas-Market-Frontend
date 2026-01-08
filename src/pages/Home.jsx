@@ -7,7 +7,7 @@ import tango from '../Images/image6.jpg';
 import sango from '../Images/image7.jpg';
 import mango from '../Images/image8.jpg';
 import { Link } from 'react-router-dom';
-import { CircularImage, MonetizeSection } from "./MonetizeSection";
+import { CircularImage, MonetizeSection } from "../MyComponents/MonetizeSection";
 const portfolioData = [
     { id: 1, title: "Whispers of Nature", description: "-Muhammad Hassan", image: mobile, tech: ["Nature", "Illustration", "Minimal"] },
     { id: 2, title: "Echoes of the Highlands", description: "-Ayesha Aqeel", image: sources, tech: ["Nature", "Serene", "Landscape Art"] },
