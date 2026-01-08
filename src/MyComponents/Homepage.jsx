@@ -257,8 +257,9 @@ function Homepage() {
                 </div>
             </section>
 
+
             <MonetizeSection/>
-            
+           
 
             {/* HERO CONTENT */}
             <section className="hero">
