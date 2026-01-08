@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Homepage from './MyComponents/Homepage';
+import Home from './MyComponents/Home';
 import About from './MyComponents/About';
 import Layout from './MyComponents/Layout';
 import Contact from './MyComponents/Contact';
@@ -15,8 +15,8 @@ function App() {
       <OnScreenProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout body={<Homepage />} />} />
-            <Route index element={<Layout body={<Homepage />} />} />
+            <Route path="/" element={<Layout body={<Home />} />} />
+            <Route index element={<Layout body={<Home />} />} />
             <Route path="about" element={<Layout body={<About />} />} />
             <Route path="contact" element={<Layout body={<Contact />} />} />
             <Route path="advertise" element={<Layout body={<Advertise />} />} />

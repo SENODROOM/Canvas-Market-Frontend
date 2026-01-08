@@ -1075,7 +1075,7 @@ nav {
 .logo {
     display: flex;
     align-items: center;
-   
+
     font-size: 28px;
     font-weight: bold;
     background: linear-gradient(45deg, #4da6ff, #1a75ff);
@@ -2894,7 +2894,7 @@ body {
 }
 
 .card-tech {
-       display: flex;
+    display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 20px;
@@ -4180,7 +4180,7 @@ a.info-item {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+
 
 
 }
@@ -4198,8 +4198,8 @@ a.info-item {
     line-height: 1.1;
     letter-spacing: -0.02em;
     font-weight: 800;
-  
-  
+
+
     text-align: center;
 }
 
@@ -4227,7 +4227,7 @@ a.info-item {
     border: none;
     border-radius: 30px;
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 200;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
@@ -4239,7 +4239,6 @@ a.info-item {
 
 .link-sell:hover {
     transform: translateY(-2px);
-   
 }
 
 
@@ -4271,14 +4270,15 @@ a.info-item {
 .circular-gauge-progress-circle {
     fill: none;
     stroke: var(--orb-2-color);
-  
-  stroke-width: 2;
+
+    stroke-width: 2;
     stroke-linecap: round;
     transform-origin: 50% 50%;
     transform: rotate(90deg);
     transition: stroke-dashoffset 1s ease;
-    
+
 }
+
 .circular-gauge-label-wrapper {
     position: absolute;
     width: 385px;
@@ -4317,8 +4317,8 @@ a.info-item {
 .circular-gauge-range-input {
     width: 180px;
 }
-.kutti-button
-{
+
+.kutti-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -4326,15 +4326,15 @@ a.info-item {
 }
 
 .buttonss {
-	padding: 0.8rem 1.5rem;
-	background: rgba(255, 255, 255, 0.05);
-	color: var(--gray);
-	border: 2px solid rgba(255, 255, 255, 0.1);
-	border-radius: 50px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	font-size: 0.9rem;
-	backdrop-filter: blur(10px);
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gray);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
     width: auto;
     text-align: center;
     font-size: 18px;
@@ -4343,8 +4343,8 @@ a.info-item {
 
 
 .buttonss.active {
-	background: linear-gradient(45deg, var(--primary), var(--accent));
-	color: white;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    color: white;
     transform: translateY(-4px) scale(1.02);
     display: inline-block;
     padding: 16px 40px;
@@ -4359,192 +4359,208 @@ a.info-item {
     letter-spacing: 0.03em;
     box-shadow: 0 4px 15px var(--orb-3-color);
 }
+
 .slide-up {
-  animation: slideUpFade 0.6s ease-out forwards;
+    animation: slideUpFade 0.6s ease-out forwards;
 }
 
 @keyframes slideUpFade {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
 .philosophy-headline {
-	font-size: 56px;
-	font-weight: 900;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	margin-bottom: 30px;
-	line-height: 1.2;
-	background: linear-gradient(135deg,
-			var(--accent-cyan) 0%,
-			var(--accent-purple) 25%,
-			var(--accent-blue) 50%,
-			var(--accent-green) 75%,
-			var(--accent-cyan) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	background-size: 200% 200%;
-	animation: gradientFlow 5s ease infinite;
-    
+    font-size: 56px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    background: linear-gradient(135deg,
+            var(--accent-cyan) 0%,
+            var(--accent-purple) 25%,
+            var(--accent-blue) 50%,
+            var(--accent-green) 75%,
+            var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientFlow 5s ease infinite;
+
 
 }
 
 @keyframes gradientFlow {
-	0% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
 
-	50% {
-		background-position: 100% 50%;
-	}
+    50% {
+        background-position: 100% 50%;
+    }
 
-	100% {
-		background-position: 0% 50%;
-	}
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .philosophy-subheading {
-	font-size: 20px;
-	color: var(--text-secondary);
-	max-width: 700px;
-	margin: 0 auto 80px;
-	line-height: 1.6;
-	font-weight: 300;
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 80px;
+    line-height: 1.6;
+    font-weight: 300;
 }
 
 .philosophy-pillars {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 50px;
-	margin: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
 }
 
 .pillar {
-	position: relative;
-	padding: 40px 30px;
-	background: linear-gradient(135deg,
-			rgba(42, 42, 42, 0.2),
-			rgba(26, 26, 26, 0.3));
-	border: 1px solid var(--metal-dark);
-	border-radius: 20px;
-	transition: all 0.4s ease;
-	overflow: hidden;
+    position: relative;
+    padding: 40px 30px;
+    background: linear-gradient(135deg,
+            rgba(42, 42, 42, 0.2),
+            rgba(26, 26, 26, 0.3));
+    border: 1px solid var(--metal-dark);
+    border-radius: 20px;
+    width: 400px;
+    transition: all 0.4s ease;
+    overflow: hidden;
 }
 
 .pillar::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 2px;
-	background: linear-gradient(90deg,
-			var(--orb-1-color),
-			var(--orb-2-color),
-			var(--orb-3-color));
-	transform: scaleX(0);
-	transition: transform 0.4s ease;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--orb-1-color),
+            var(--orb-2-color),
+            var(--orb-3-color));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
 }
 
 .pillar:hover::before {
-	transform: scaleX(1);
+    transform: scaleX(1);
 }
 
 .pillar:hover {
-	transform: translateY(-10px);
-	border-color: var(--orb-3-color);
-	box-shadow: 5px 5px 15px var(--orb-3-color);
-	background: linear-gradient(135deg,
-			var(--orb-1-color),
-			var(--dark-1));
+    transform: translateY(-10px);
+    border-color: var(--orb-3-color);
+    box-shadow: 5px 5px 15px var(--orb-3-color);
+    background: linear-gradient(135deg,
+            var(--orb-1-color),
+            var(--dark-1));
 }
 
 .pillar-icon {
-	width: 80px;
-	height: 80px;
-	margin: 0 auto 25px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 40px;
-	position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    position: relative;
 }
 
 .pillar-icon::before {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(135deg, var(--orb-3-color), var(--orb-2-color));
-	border-radius: 50%;
-	opacity: 0.2;
-	animation: pulse 3s ease-in-out infinite;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--orb-3-color), var(--orb-2-color));
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
 
-	0%,
-	100% {
-		transform: scale(1);
-		opacity: 0.2;
-	}
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
 
-	50% {
-		transform: scale(1.2);
-		opacity: 0.1;
-	}
+    50% {
+        transform: scale(1.2);
+        opacity: 0.1;
+    }
+}
+
+.Testimonials-parent-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .pillar-title {
-	font-size: 24px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	margin-bottom: 15px;
-	color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
     text-align: center;
 }
 
 .pillar-description {
-	font-size: 16px;
-	color: var(--text-secondary);
-	line-height: 1.6;
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    text-align: center;
+    font-weight: 500;
 }
+
 .pillar-description a {
-	color: var(--accent-cyan);
-	text-decoration: none;
-	transition: all 0.3s ease;
-	position: relative;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .pillar-description a::after {
-	content: '';
-	position: absolute;
-	bottom: -2px;
-	left: 0;
-	width: 0;
-	height: 1px;
-	background: var(--accent-cyan);
-	transition: width 0.3s ease;
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-cyan);
+    transition: width 0.3s ease;
 }
 
 .pillar-description a:hover {
-	color: var(--accent-purple);
+    color: var(--accent-purple);
 }
 
 .pillar-description a:hover::after {
-	width: 100%;
+    width: 100%;
 }
-.pill
-{
-     font-size: clamp(2.2rem, 6vw, 4rem);
-    margin-bottom: 30px;
+
+.pill {
+    width: auto;
+    position: relative;
+    font-size: clamp(2.2rem, 6vw, 4rem);
     background: linear-gradient(135deg, var(--orb-1-color) 0%, var(--orb-2-color) 30%, var(--orb-3-color) 60%, var(--glow-cyan) 100%);
     background-size: 300% 300%;
     -webkit-background-clip: text;
@@ -4555,14 +4571,35 @@ a.info-item {
     letter-spacing: -0.02em;
     font-weight: 800;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
+    display: inline;
 }
-.name{
-display: flex;
-justify-content: center;
-align-items: center;
-color: var(--orb-3-color);
-margin-top: 13px;
-font-style: italic;
 
+.pill::before,
+.pill::after {
+    content: '';
+    position: absolute;
+    top: 56%;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8fd5e7, transparent);
+    animation: linePulse 3s ease infinite;
+}
+
+.pill::before {
+    left: -60px;
+}
+
+.pill::after {
+    right: -60px;
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--orb-3-color);
+    margin-top: 13px;
+    font-style: italic;
+    font-weight: 400;
 }
