@@ -4286,6 +4286,22 @@ a.info-item {
 
 }
 
+@media (max-width: 1200px) {
+    #kutti .left h1 {
+        margin: 15px 15px 15px 15px;
+    }
+}
+
+@media (max-width: 1060px) {
+    .circular-gauge-container {
+        display: none;
+    }
+
+    #kutti {
+        margin: 0 0 30px 0;
+    }
+}
+
 .circular-gauge-label-wrapper img {
     width: 100%;
     height: 100%;
@@ -4345,7 +4361,7 @@ a.info-item {
 .buttonss:hover {
     background: linear-gradient(45deg, rgba(0, 230, 255, 0.25), rgba(13, 121, 246, 0.15));
     border-color: rgba(0, 230, 255, 0.3);
-    color: #b1ecff;
+    color: #c7ebf7;
     transform: scale(1.01);
     box-shadow: 0 2px 8px rgba(0, 230, 255, 0.3);
     font-size: 0.98rem;

@@ -11,9 +11,9 @@ export function Testimonials() {
                     <div className="pillar-icon"><b>🧑🏻‍🦱</b></div>
                     <h3 className="pillar-title">⭐⭐⭐⭐⭐</h3>
                     <p className="pillar-description">
-                        “Exactly what students and developers need”
-                        Canvas Market made it incredibly easy for me to find high-quality projects with clean code and proper documentation. The platform saves hours of work and gives real learning value instead of copied junk. Highly recommended!<br />
-                        <span className="name">— Ahsan R., Software Engineering Student</span>
+                        “A beautiful place for real art lovers”
+                        I found unique, high-quality paintings that I couldn’t find anywhere else. The artists are genuine, the artwork feels authentic, and the buying process is smooth and secure. This platform truly supports creativity.<br />
+                        <span className="name">— Ahsan R., Art Collector</span>
                     </p>
                 </div>
 
@@ -22,10 +22,9 @@ export function Testimonials() {
                     <h3 className="pillar-title">⭐⭐⭐⭐⭐</h3>
                     <p className="pillar-description">
 
-                        “A game-changer for selling projects”
-                        As a developer, Canvas Market gave me a legit platform to showcase and sell my work. The interface is smooth, projects are well organized, and buyers are serious. It finally feels like my hard work is valued.
-                        <br />
-                        <span className="name">— Hassan K., Full-Stack Developer</span>
+                        “Finally, a marketplace that values artists”
+                        As a painter, this website gave me the perfect space to showcase and sell my work. The presentation of paintings is elegant, and buyers actually appreciate original art. I’ve gained both income and confidence here. <br />
+                        <span className="name">— Hassan K., Visual Artist</span>
                     </p>
                 </div>
 
@@ -33,10 +32,9 @@ export function Testimonials() {
                     <div className="pillar-icon"><b>👩🏻‍🦱</b></div>
                     <h3 className="pillar-title">⭐⭐⭐⭐⭐</h3>
                     <p className="pillar-description">
-                        “Clean UI, real projects, zero hassle”
-                        Unlike other marketplaces, Canvas Market focuses on quality. The search, filters, and project previews make it easy to find exactly what you need. Perfect for students, freelancers, and startups.
-                        <br />
-                        <span className="name">— Sarah M., Frontend Developer</span>
+                        “Simple, elegant, and trustworthy”
+                        Browsing paintings feels like walking through an online gallery. The filters, categories, and artwork previews make it easy to find exactly what matches your taste. A wonderful experience for both buyers and sellers. <br />
+                        <span className="name">— Sarah M., Art Enthusiast</span>
                     </p>
                 </div>
             </div>
