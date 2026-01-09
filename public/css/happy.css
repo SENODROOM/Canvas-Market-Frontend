@@ -646,22 +646,23 @@ margin : 150px 0;
     width: 400px;
     height: 90px;
 }
-
+.formdesign>textarea {
+    width: 400px;
+    height: auto;
+    min-height: 90px;
+    resize: none;
+}
 
 .contact-but:hover{
     background: linear-gradient(45deg, var(--primary), var(--accent));
     box-shadow: 0 4px 15px var(--orb-3-color);
     color: white;
-    transform: translateY(-4px) scale(1.02);
-    display: inline-block;
-    padding: 16px 40px;
+  
+
     text-decoration: none;
     border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+
+
     
     
 }
@@ -754,16 +755,56 @@ margin : 150px 0;
      outline: none;
       cursor: pointer;
        letter-spacing: 0.03em;
+       transition: all 0.3s ease;
+}
+.formdesign textarea {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+    text-align: center;
+     caret-color: var(--orb-3-color);
+     color: var(--accent-blue);
+     font-size: 20px;
+     outline: none;
+      cursor: pointer;
+      padding:24px; 
+       transition: all 0.3s ease;
+       
 }
 .formdesign input:hover {
     border: 1px solid var(--orb-3-color);
      box-shadow: 0 20px 40px rgba(37, 133, 205, 0.2);
 
 }
-.formdesign input:focus {
+.formdesign textarea:hover {
     border: 1px solid var(--orb-3-color);
      box-shadow: 0 20px 40px rgba(37, 133, 205, 0.2);
 
+}
+.formdesign input:focus::placeholder {
+    border: 1px solid var(--orb-3-color);
+     box-shadow: 0 20px 40px rgba(37, 133, 205, 0.2);
+     opacity: 0;
+    
+
+
+}
+.formdesign textarea:focus::placeholder {
+    border: 1px solid var(--orb-3-color);
+     box-shadow: 0 20px 40px rgba(37, 133, 205, 0.2);
+     opacity: 0;
+    
+
+
+}
+textarea::placeholder
+{
+   padding: 4px;
+    color: rgba(76, 108, 122, 0.8);
+    
 }
 
 .sell-formdesign {
@@ -787,8 +828,9 @@ margin : 150px 0;
 }
 
 .place::placeholder {
-    color: rgb(65, 188, 241);
-    font-weight: 500;
+    color: rgba(76, 108, 122, 0.8);
+    
+    
 }
 
 .formerror {

@@ -76,7 +76,7 @@ function Contact() {
                                 className="formerror"></span></b>
                         </div>
                         <div className="formdesign" id="msg">
-                            <input type="message" name="fmsg" required placeholder="Message" className="place" onChange={handleInputs} /> <b><span
+                            <textarea name="fmsg" required placeholder="Message" className="place " onChange={handleInputs}  /> <b><span
                                 className="formerror"></span></b>
                         </div>
                         <button className="contact-but but" type="submit" value="Send Message" onClick={PostData}>Send Message</button>
