@@ -631,11 +631,10 @@ li {
 
 /* contact.css */
 .contact-main {
-    display: flex;
-    justify-content: center;
-    /* margin: 50px 0 50px 0; */
-    margin: 0px 0px 250px;
-    margin-top: 89px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin : 150px 0;
 }
 
 #form2 {
@@ -648,21 +647,24 @@ li {
     height: 90px;
 }
 
-.contact-but {
 
-    width: fit-content;
-    padding: 12px 60px;
-
-    margin-top: 37px;
-    margin-left: 225px;
-    border-radius: 30px;
-    font-size: 15px;
-    font-weight: bold;
-    color: rgba(59, 136, 246, 0.5);
-    background-color: white;
-
+.contact-but:hover{
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    box-shadow: 0 4px 15px var(--orb-3-color);
+    color: white;
+    transform: translateY(-4px) scale(1.02);
+    display: inline-block;
+    padding: 16px 40px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    
 }
-
 .follow {
     margin: 50px;
     text-align: center;
@@ -684,12 +686,21 @@ li {
 
 /* formstyle.css */
 .formdiv {
-    border-radius: 30px;
-    background-color: rgb(13, 76, 143);
-    width: 537px;
+   
+    background: linear-gradient(135deg, var(--dark-1), var(--orb-1-color));
+    border: 2px solid linear-gradient(135deg, var(--orb-1-color), var(--dark-1));
+    border-radius: 20px;
     padding: 30px;
-    margin: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-align: center;
+    
+   
+
 }
+
+
 
 .sell-formdiv {
     display: flex;
@@ -702,7 +713,18 @@ li {
 }
 
 .formh1 {
-    color: white;
+
+    background: linear-gradient(135deg, var(--orb-1-color) 0%, var(--orb-2-color) 30%, var(--orb-3-color) 60%, var(--glow-cyan) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: modernGradient 8s ease infinite;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    text-align: center;
+    font-size: clamp(2.2rem, 6vw, 4rem);
 }
 
 .sell-formh1 {
@@ -719,14 +741,29 @@ li {
 }
 
 .formdesign input {
-    height: 36px;
-    padding: 20px;
-    border-style: none;
-    margin-bottom: -34px;
-    border-radius: 11px;
-    font-size: 15px;
-    background-color: rgb(62, 116, 174);
-    color: white
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    height: 54px;
+    text-align: center;
+     caret-color: var(--orb-3-color);
+     color: var(--accent-blue);
+     font-size: 20px;
+     outline: none;
+      cursor: pointer;
+       letter-spacing: 0.03em;
+}
+.formdesign input:hover {
+    border: 1px solid var(--orb-3-color);
+     box-shadow: 0 20px 40px rgba(37, 133, 205, 0.2);
+
+}
+.formdesign input:focus {
+    border: 1px solid var(--orb-3-color);
+     box-shadow: 0 20px 40px rgba(37, 133, 205, 0.2);
+
 }
 
 .sell-formdesign {
@@ -750,7 +787,8 @@ li {
 }
 
 .place::placeholder {
-    color: white;
+    color: rgb(65, 188, 241);
+    font-weight: 500;
 }
 
 .formerror {
@@ -760,16 +798,19 @@ li {
 
 .but {
 
-    width: fit-content;
-    padding: 12px 60px;
-    /* margin: 8px;
-    margin-left: 248px; */
-    border-style: none;
-    font-size: 15px;
-
-    font-weight: bold;
-    color: rgb(13, 76, 143);
-    background-color: white;
+      padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gray);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    width: auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
 
 }
 
@@ -4808,5 +4849,17 @@ a.info-item {
    transition: all 0.3s ease;
 } */
  /* Base link style */
-
-
+#form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 30px;
+    width: 500px;
+    gap:10px;
+}
+#form p{
+    color: var(--orb-3-color);
+    font-size: 22px;
+}
