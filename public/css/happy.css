@@ -4628,8 +4628,9 @@ a.info-item {
     font-style: italic;
     font-weight: 400;
 }
+
 .privacy-policy-container {
-   background: linear-gradient(135deg, var(--dark-1), var(--orb-1-color));
+    background: linear-gradient(135deg, var(--dark-1), var(--orb-1-color));
     border: 2px solid linear-gradient(135deg, var(--orb-1-color), var(--dark-1));
     border-radius: 20px;
     padding: 30px;
@@ -4637,7 +4638,7 @@ a.info-item {
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     max-width: 800px;
-     margin: 120px auto;
+    margin: 120px auto;
 }
 
 .privacy-policy-header {
@@ -4648,16 +4649,22 @@ a.info-item {
     margin-top: 30px;
 }
 
+.privacy-policy-header-p{
+    text-align: center;
+}
+
 .section-header1 {
     font-size: 28px;
-    color: var(--orb-2-color);
- background-color: #071627;
+    color: var(--orb-3-color);
+    background-color: #07284e;
     border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 1px solid transparent;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
 }
 
 .section-header-h {
@@ -4681,25 +4688,26 @@ a.info-item {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: 
+    transition:
         max-height 0.5s ease,
         opacity 0.3s ease;
 }
 
 .section-content-allow {
-    max-height: 700px;   /* keep realistic */
+    max-height: 700px;
+    /* keep realistic */
     opacity: 1;
     padding: 18px 35px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(73, 83, 224, 0.08);
+    background: rgb(255 255 255 / 8%);
     backdrop-filter: blur(25px);
     border: 1px solid transparent;
     border-top-left-radius: 0px;
- border-top-right-radius: 0px;
-      border-bottom-left-radius: 25px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-   margin-top: -50px;
-    margin-bottom: 80px;
+    margin-top: -25px;
+    margin-bottom: 20px;
 }
 
 
@@ -4768,8 +4776,8 @@ a.info-item {
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-        font-family: "Font Awesome 5 Free";
-            font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
 
 
@@ -4777,13 +4785,14 @@ a.info-item {
     color: white;
     font-size: 22px;
     transition: transform 0.4s ease;
-    
+
 }
 
 .arrow-rotate {
     transform: rotate(180deg) scale(1.1);
 }
-.section-header1:hover::before {
+
+/* .section-header1:hover::before {
     transform: scaleX(1);
 }
 
@@ -4791,4 +4800,4 @@ a.info-item {
     
     transform: translateY(-10px);
    transition: all 0.3s ease;
-}
+} */

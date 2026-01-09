@@ -7,13 +7,12 @@ const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy-container">
       <h1 className="privacy-policy-header">
-        MD Pharmacy Privacy Policy
+        About Us
       </h1>
-      <p>
-        We are committed to protecting your privacy and ensuring the security of
-        your personal information. This Privacy Policy outlines the types of
-        information we collect, how we use it, and your choices regarding the
-        collection and use of your data.
+      <p className='privacy-policy-header-p'>
+        Canvas Market is a digital marketplace designed to connect artists and art lovers.
+        We provide a trusted platform for buying and selling original artwork.
+        Our mission is to make art accessible while empowering creators worldwide.
       </p>
 
       <Section id="1" heading="Information We Collect" data={InformationWeCollect} />
