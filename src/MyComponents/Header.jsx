@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from "../Images/logo2cut (1).png";
-
 
 function Header() {
   const [menuActive, setMenuActive] = useState(false);
@@ -13,28 +12,13 @@ function Header() {
   };
 
   useEffect(() => {
-    // Scroll handling for header, active links, and parallax shapes
+    // Scroll handling for header and parallax shapes
     const handleScroll = () => {
       if (!headerRef.current) return;
 
       // Header scroll effect
       if (window.pageYOffset > 50) headerRef.current.classList.add('scrolled');
       else headerRef.current.classList.remove('scrolled');
-
-      // Active menu highlighting
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav a');
-      let currentSection = '';
-      const scrollPos = window.pageYOffset + 100;
-      sections.forEach(section => {
-        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) link.classList.add('active');
-      });
 
       // Parallax shapes
       const shapes = document.querySelectorAll('.shape');
@@ -134,44 +118,56 @@ function Header() {
   };
 
   return (
-    <>
-      <header className="glass" ref={headerRef}>
-        <nav>
-<Link to="/" className="logo">
-  <img src={logo} alt="Canvas Market Logo" className="logo-icon" />
-  CANVAS MARKET
-</Link>
+    <header className="glass" ref={headerRef}>
+      <nav>
+        <NavLink to="/" className="logo">
+          <img src={logo} alt="Canvas Market Logo" className="logo-icon" />
+          CANVAS MARKET
+        </NavLink>
 
-          <ul className="nav-links">
-            <li><Link to="/about" className="li-link">About</Link></li>
-            <li><Link to="/contact" className="li-link">Contact</Link></li>
-            <li><Link to="/advertise" className="li-link">Advertise on AU</Link></li>
-            <li> <Link to="/Sell" className='li-link'>Sell Paintings</Link></li>
-            <li><Link to="/Get" className='li-link'>Get Paintings</Link></li>
-          </ul>
+        {/* Desktop Nav */}
+        <ul className="nav-links">
+          <li>
+            <NavLink to="/about" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+              Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+              Sell Paintings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+              Get Paintings
+            </NavLink>
+          </li>
+        </ul>
 
-          {/* Mobile menu toggle */}
-          <div
-            className={`mobile-menu-toggle ${menuActive ? 'active' : ''}`}
-            onClick={() => setMenuActive(!menuActive)}
-          >
-            <div className="hamburger-line"></div>
-            <div className="hamburger-line"></div>
-            <div className="hamburger-line"></div>
-          </div>
-        </nav>
-
-        {/* Mobile navigation */}
-        <div className={`mobile-nav ${menuActive ? 'active' : ''}`}>
-          <Link to="/about" className="li-link" onClick={() => setMenuActive(false)}>About</Link>
-          <Link to="/contact" className="li-link" onClick={() => setMenuActive(false)}>Contact</Link>
-          <Link to="/advertise" className="li-link" onClick={() => setMenuActive(false)}>Advertise on AU</Link>
-          <Link to="/Sell" className='li-link' onClick={() => setMenuActive(false)}>Sell Paintings</Link>
-          <Link to="/Get" className='li-link' onClick={() => setMenuActive(false)}>Get Paintings</Link>
-
+        {/* Mobile menu toggle */}
+        <div
+          className={`mobile-menu-toggle ${menuActive ? 'active' : ''}`}
+          onClick={() => setMenuActive(!menuActive)}
+        >
+          <div className="hamburger-line"></div>
+          <div className="hamburger-line"></div>
+          <div className="hamburger-line"></div>
         </div>
-      </header>
-    </>
+      </nav>
+
+      {/* Mobile navigation */}
+      <div className={`mobile-nav ${menuActive ? 'active' : ''}`}>
+        <NavLink to="/about" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>About</NavLink>
+        <NavLink to="/contact" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Contact</NavLink>
+        <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Sell Paintings</NavLink>
+        <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Get Paintings</NavLink>
+      </div>
+    </header>
   );
 }
 

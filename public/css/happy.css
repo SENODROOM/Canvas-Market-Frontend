@@ -391,6 +391,12 @@ li {
     font-weight: 400;
 
 }
+.li-link:hover
+{
+    color: var(--orb-3-color);
+    transform: scale(1.5);
+    transition: transform 0.3s ease;
+}
 
 /* About.css */
 .about-mainheading {
@@ -4801,3 +4807,6 @@ a.info-item {
     transform: translateY(-10px);
    transition: all 0.3s ease;
 } */
+ /* Base link style */
+
+
