@@ -118,9 +118,8 @@ const PrivacyPolicy = () => {
             return (
               <div
                 key={index}
-                className={`feature-box ${
-                  !expanded && index > 2 ? "hidden" : ""
-                }`}
+                className={`feature-box ${!expanded && index > 2 ? "hidden" : ""
+                  }`}
               >
                 <div className="icon">{item.icon}</div>
                 <h3>{item.title}</h3>
@@ -128,8 +127,8 @@ const PrivacyPolicy = () => {
 
                 {isOpen && (
                   <p className={`feature-more ${isOpen ? "open" : ""}`}>
-  {item.longDesc}
-</p>
+                    {item.longDesc}
+                  </p>
                 )}
 
                 <button
