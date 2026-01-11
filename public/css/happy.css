@@ -639,7 +639,9 @@ margin : 150px 0;
 
 #form2 {
     display: none;
-    margin: 32px 20px;
+    margin: 50px auto;
+   
+    
 }
 
 .formdesign>input {
@@ -688,18 +690,45 @@ margin : 150px 0;
 /* formstyle.css */
 .formdiv {
    
-    background: linear-gradient(135deg, var(--dark-1), var(--orb-1-color));
-    border: 2px solid linear-gradient(135deg, var(--orb-1-color), var(--dark-1));
+      background: linear-gradient(135deg, var(--dark-1), var(--orb-1-color));
     border-radius: 20px;
     padding: 30px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     text-align: center;
+
+    /* base shadow */
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(7, 122, 253, 0.25);
+
+    animation: glowPulse 3s ease-in-out infinite;
+}
     
    
 
+
+
+/* glow up & down */
+@keyframes glowPulse {
+    0% {
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.8),
+            0 0 20px rgba(7, 122, 253, 0.25);
+    }
+    50% {
+        box-shadow:
+            0 20px 45px rgba(0, 0, 0, 0.9),
+            0 0 45px rgba(0, 230, 255, 0.6);
+    }
+    100% {
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.8),
+            0 0 20px rgba(7, 122, 253, 0.25);
+    }
 }
+
+/* slow color movement */
 
 
 
@@ -4690,7 +4719,7 @@ a.info-item {
 }
 
 .pill::before,
-.pill::after {
+.pill::after ,.about-title::before , .about-title::after{
     content: '';
     position: absolute;
     top: 56%;
@@ -4700,11 +4729,11 @@ a.info-item {
     animation: linePulse 3s ease infinite;
 }
 
-.pill::before {
+.pill::before , .about-title::before  {
     left: -60px;
 }
 
-.pill::after {
+.pill::after,.about-title::after  {
     right: -60px;
 }
 
@@ -4905,3 +4934,424 @@ a.info-item {
     color: var(--orb-3-color);
     font-size: 22px;
 }
+.about-heading
+{
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:25px;
+    text-align: center;
+}
+.about-title
+{
+     width: auto;
+    position: relative;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    background: linear-gradient(135deg, var(--orb-1-color) 0%, var(--orb-2-color) 30%, var(--orb-3-color) 60%, var(--glow-cyan) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: modernGradient 8s ease infinite;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    text-align: center;
+    display: inline;
+
+    /* text-transform: uppercase; */
+    
+}
+.about-tagline
+{
+        color: #919193;
+}
+@keyframes modernGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.about-tagline
+{
+    width:800px;
+    font-weight: 400;
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about-description {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 90px 0;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* glowing divider lines */
+/* glowing divider lines (theme based) */
+/*.about-description::before,
+.about-description::after {
+    content: "";
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 1.5px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--orb-1-color),
+        var(--orb-2-color),
+        var(--orb-3-color),
+        transparent
+    );
+
+    filter: blur(0.4px);
+
+    box-shadow:
+        0 0 8px var(--orb-2-color),
+        0 0 18px var(--glow-cyan);
+
+    opacity: 0.8;
+}
+
+.about-description::before {
+    top: -60px;
+}
+
+.about-description::after {
+    bottom: -60px;
+}
+
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.about-left {
+    width: 50vw;
+    text-align: center;
+}
+
+.about-left h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 30px;
+    background: linear-gradient(
+        135deg,
+        var(--orb-1-color) 0%,
+        var(--orb-2-color) 30%,
+        var(--orb-3-color) 60%,
+        var(--glow-cyan) 100%
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: modernGradient 8s ease infinite;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+}
+
+.about-left p {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* =========================
+   IMAGE SECTION
+========================= */
+
+.about-image {
+    backdrop-filter: blur(2px);
+}
+
+.about-image img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+
+    /* image absorbing into background */
+    mask-image: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,1) 60%,
+        rgba(0,0,0,0) 100%
+    );
+
+    -webkit-mask-image: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,1) 60%,
+        rgba(0,0,0,0) 100%
+    );
+
+    box-shadow: 0 0 80px rgba(0, 180, 255, 0.15);
+    backdrop-filter: blur(2px);
+
+
+}
+
+/* =========================
+   GRADIENT ANIMATION
+========================= */
+
+@keyframes modernGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .about-image {
+        display: none;
+    }
+
+    .about-left {
+        width: 90vw;
+    }
+
+    .about-description {
+        margin: 100px 0;
+    }
+}
+/* =========================
+   WHY CHOOSE US
+========================= */
+
+.why-choose-us {
+    text-align: center;
+    
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* title */
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 30px;
+    background: linear-gradient(
+        135deg,
+        var(--orb-1-color) 0%,
+        var(--orb-2-color) 30%,
+        var(--orb-3-color) 60%,
+        var(--glow-cyan) 100%
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: modernGradient 8s ease infinite;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.features-grid {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap:23px;
+   flex-wrap: wrap;
+    max-width: 1300px;
+    margin: 0 auto 22px;
+    place-items: center;
+}
+
+/* =========================
+   PILLARS / BOXES
+========================= */
+
+.feature-box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+
+    padding: 36px 28px;
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(42, 42, 42, 0.2),
+        rgba(26, 26, 26, 0.3)
+    );
+
+    border: 1px solid var(--metal-dark);
+    overflow: hidden;
+
+    opacity: 1;
+    transform: translateY(0) scale(1);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+        
+}
+
+/* hidden animation */
+.feature-box.hidden {
+    display: none;
+    transform: translateY(30px) scale(0.95);
+    pointer-events: none;
+}
+
+/* hover glow */
+.feature-box:hover {
+    border-color: var(--orb-2-color);
+    box-shadow:
+        0 0 22px rgba(0, 180, 255, 0.25),
+        inset 0 0 20px rgba(0, 180, 255, 0.08);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.feature-box .icon {
+    font-size: 34px;
+    margin-bottom: 18px;
+    color: var(--glow-cyan);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.explore-btn {
+    margin-top: 12px;
+    padding: 12px 36px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    border: 1px solid var(--orb-2-color);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* hover */
+.explore-btn:hover {
+    background: var(--orb-2-color);
+    color: black;
+    box-shadow: 0 0 20px var(--orb-2-color);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .why-choose-us {
+        padding: 70px 0;
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+    }
+
+    .feature-box {
+        padding: 28px 22px;
+    }
+
+    .explore-btn {
+        width: 80%;
+        margin-top: 16px;
+    }
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orb-3-color), var(--orb-1-color));
+    border-radius: 2px;
+}/* feature more text */
+.feature-more {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cfd8ff;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* button inside card */
+/* More / Show Less button — SAME STYLE as explore-btn */
+.feature-more-btn {
+  margin-top: 12px;
+  padding: 12px 36px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+
+  background: transparent;
+  color: white;
+  border: 1px solid var(--orb-2-color);
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* hover effect */
+.feature-more-btn:hover {
+  background: var(--orb-2-color);
+  color: black;
+  box-shadow: 0 0 20px var(--orb-2-color);
+}
+
+/* smoother card feel */
+.feature-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 180, 255, 0.15);
+}
+
+/* animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

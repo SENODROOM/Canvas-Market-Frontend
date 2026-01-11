@@ -52,7 +52,7 @@ function Contact() {
         if (res.ok) {
             form.style.display= 'none';
             form2.style.display= 'flex';
-            main.style.margin = "0 0 250px 0";
+            main.style.margin = "200px 0 250px 0";
         } else {
             console.error("Error in response:", res.statusText);
         }
@@ -81,7 +81,7 @@ function Contact() {
                         </div>
                         <button className="contact-but but" type="submit" value="Send Message" onClick={PostData}>Send Message</button>
                     </div>
-                    <div className="formh1" id="form2">
+                    <div  id="form2">
                         Let us know how we can help you and our team will be in touch as soon as possible!
                     </div>
                 </form>
