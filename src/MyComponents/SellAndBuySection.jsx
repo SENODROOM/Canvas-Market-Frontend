@@ -30,9 +30,9 @@ export function SellAndBuySection() {
           <div className="left show slide-up">
             <h1>Monetize Your Art</h1>
             <p>
-             Turn your creativity into cash! Showcase your artwork, reach art lovers, and start selling your pieces effortlessly. Whether it’s digital designs, paintings, or handmade crafts, our platform helps you connect with buyers and get paid for your passion. Start turning your talent into a thriving art business today!c
+              Turn your creativity into cash! Showcase your artwork, reach art lovers, and start selling your pieces effortlessly. Whether it’s digital designs, paintings, or handmade crafts, our platform helps you connect with buyers and get paid for your passion. Start turning your talent into a thriving art business today!c
             </p>
-            <Link to="/Sell" className="link-sell">
+            <Link to="/Sell" className="link-sell" onClick={() => window.scrollTo(0, 0)}>
               <div className="button">Sell Now</div>
             </Link>
           </div>
@@ -45,7 +45,7 @@ export function SellAndBuySection() {
             <p>
               Discover unique artworks created by talented artists and bring creativity into your space. Whether you’re looking for a statement piece or something subtle and meaningful, each artwork is crafted with passion and originality. Acquiring art is not just about ownership—it’s about connecting with creativity, supporting artists, and adding character to your surroundings.
             </p>
-            <Link to="/Get" className="link-sell">
+            <Link to="/Get" className="link-sell" onClick={() => window.scrollTo(0, 0)}>
               <div className="button">Buy Now</div>
             </Link>
           </div>

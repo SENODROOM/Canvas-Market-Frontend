@@ -8,12 +8,14 @@ import Advertise from './MyComponents/Advertise';
 import Sell from './MyComponents/Sell';
 import Get from './MyComponents/Get';
 import { OnScreenProvider } from './ContextProviders/OnScreenContext';
+import ScrollToTop from './utils/ScrollToTop';
 
 function App() {
   return (
     <>
       <OnScreenProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Layout body={<Home />} />} />
             <Route index element={<Layout body={<Home />} />} />
