@@ -8,10 +8,17 @@ function Homepage() {
         <main>
             {/* HERO SECTION */}
             <section className="bahubali">
-                <h1 className="mainheading">Designers' Secret Source</h1>
-                <p className="subheading">The best design inspiration – expertly curated for you.</p>
-                <p className="text">Muzli is a new-tab browser extension that instantly delivers relevant design stories and inspiration to keep you in the loop.</p>
+                <h1 className="mainheading">Where Art Finds Its Home</h1>
+                <p className="subheading">
+                    <i>
+                        "Discover buy and sell original paintings from talented artists"
+                    </i>
+                </p>
+                <p className="text">
+                    Canvas Market connects art lovers with creators worldwide — explore unique artworks, support independent artists, and turn creativity into opportunity.
+                </p>
             </section>
+
             <Sliders />
             <Stats />
             <SellAndBuySection />
