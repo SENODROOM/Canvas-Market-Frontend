@@ -122,7 +122,7 @@ function Sell() {
        
         <div className="sell-formdiv">
 
-        
+        <div className="main-sell">
           {/* Form column */}
           <form>
           
@@ -242,7 +242,7 @@ function Sell() {
               </div>
             )}
           </div>
-
+</div>
           {/* Centered List Artwork button – full premium style */}
           <div className="center-submit-wrapper">
             <button

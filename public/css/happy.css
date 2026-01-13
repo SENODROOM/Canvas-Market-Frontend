@@ -692,17 +692,21 @@ margin : 150px 0;
    
       background: linear-gradient(135deg, var(--dark-1), var(--orb-1-color));
     border-radius: 20px;
-    padding: 30px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-
+    
+   
+   
     /* base shadow */
     box-shadow:
         0 15px 35px rgba(0, 0, 0, 0.8),
         0 0 25px rgba(7, 122, 253, 0.25);
 
     animation: glowPulse 3s ease-in-out infinite;
+    margin: 100px auto;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+ 
 }
     
    
@@ -740,6 +744,7 @@ margin : 150px 0;
     padding: 30px;
     margin: 0;
     border-radius: 25px;
+
 }
 
 .formh1 {
@@ -755,6 +760,7 @@ margin : 150px 0;
     font-weight: 800;
     text-align: center;
     font-size: clamp(2.2rem, 6vw, 4rem);
+    margin: 25px 0;
 }
 
 .sell-formh1 {
@@ -4926,13 +4932,14 @@ a.info-item {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    margin: 30px;
-    width: 500px;
+   
     gap:10px;
 }
 #form p{
     color: var(--orb-3-color);
     font-size: 22px;
+    text-align: center;
+    max-width: 600px;
 }
 .about-heading
 {
@@ -5433,13 +5440,14 @@ a.info-item {
 }
 
 .sell-formdiv {
-  display: grid;
-  grid-template-columns: 1fr minmax(280px, 380px);
-  gap: 60px;
+  display: flex;
+   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 50px;
+  gap: 30px;
   background: linear-gradient(135deg, rgba(0,10,16,0.7), rgba(7,30,80,0.3), rgba(0,10,16,0.7));
   backdrop-filter: blur(30px);
   border: 1px solid rgba(0,230,255,0.14);
@@ -5483,7 +5491,9 @@ a.info-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 22px;
+  flex-wrap: wrap;
 }
 
 .sell-formdesign {
@@ -5638,7 +5648,7 @@ a.info-item {
 
 
 .Painting {
-    margin-top: 150px;
+   
   width: 100%;
   max-width: 260px;
   aspect-ratio: 3/4;
@@ -5680,7 +5690,7 @@ a.info-item {
   box-shadow: 0 12px 36px rgba(0,230,255,0.4);
   transition: all 0.35s ease;
   animation: buttonPulse 3s ease-in-out infinite;
-  margin-top: -40px;
+  margin-bottom: 25px;
 }
 
 
@@ -5695,23 +5705,11 @@ a.info-item {
   transform: none;
   box-shadow: none;
 }
-
-/* Responsive adjustments */
-@media (max-width: 1100px) {
-  .sell-formdiv {
-    grid-template-columns: 1fr;
-    gap: 50px;
-    padding: 40px;
-  }
-  .center-submit-wrapper {
-    margin-top: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .bahubali { padding: 60px 15px 30px; margin: 40px 0 10px; }
-  .about-mainheading { font-size: 2.4rem; }
-  .sell-formdiv { padding: 35px 25px; max-width: 95%; }
-  .preview { max-width: 280px; padding: 25px 20px; }
-  .Painting { max-width: 240px; }
+.main-sell{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+   
 }
