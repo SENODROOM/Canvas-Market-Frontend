@@ -1,219 +1,260 @@
-// import ContactCSS from '../assets/css/contact.css'
-// import ContactCSS2 from '../assets/css/formstyle.css'
-import facebooklogo from "../Images/facebook.png";
-import twitterlogo from "../Images/twitter.png";
-import instalogo from "../Images/insta.png";
-import linklogo from "../Images/link.png";
-import mediumlogo from "../Images/medium.png";
-import pinlogo from "../Images/pin.png";
-import axios from "axios";
+// Sell.jsx
 import { useEffect, useState } from "react";
-// import readimg from "../assets/js/readimg";
-
-
-// const [latestElementContent, setLatestElementContent] = useState("Not available");
-
-// useEffect(() => {
-//   // Establish a WebSocket connection
-//   const ws = new WebSocket('ws://localhost:1000');
-
-//   // Handle WebSocket messages
-//   ws.onmessage = (event) => {
-//     const data = JSON.parse(event.data);
-//     setLatestElementContent(data.latestElement ? data.latestElement.filename : 'Not available');
-//   };
-
-//   // Clean up the WebSocket connection on component unmount
-//   return () => {
-//     ws.close();
-//   };
-// }, []);
-
-// import paintingImg from `../Images/${laZZZ}`;
+import axios from "axios";
 
 function Sell() {
   const [latestElementContent, setLatestElementContent] = useState("Not available");
   const [paintingImg, setPaintingImg] = useState(null);
-
-  useEffect(() => {
-    // Establish a WebSocket connection
-    const ws = new WebSocket('ws://localhost:1000');
-
-    // Handle WebSocket messages
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setLatestElementContent(data.latestElement ? data.latestElement.filename : 'Not available');
-
-      // Dynamically import the image based on the latest element
-      import(`../Images/UploadedImages/${data.latestElement ? data.latestElement.filename : 'defaultImage.png'}`)
-        .then(image => setPaintingImg(image.default))
-        .catch(error => console.error('Error loading image:', error));
-    };
-
-    // Clean up the WebSocket connection on component unmount
-    return () => {
-      ws.close();
-    };
-  }, []);
-
-  useEffect(() => {
-    setProducts((prevProducts) => ({ ...prevProducts, fimg: latestElementContent }));
-  }, [latestElementContent]);
-  
-
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
-  const handleUpload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("image", selectedFile);
-
-      await axios.post("http://localhost:1000/sell", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      // Handle success, e.g., show a success message or update the UI
-      // This function will be executed after 2000 milliseconds (2 seconds)
-      setTimeout(() => {
-        // Your code to be executed after the delay
-        console.log("This code executes after 2 seconds");
-      }, 2000);
-
-      console.log(`Image uploaded successfully!`);
-    } catch (error) {
-      // Handle error, e.g., show an error message or log the error
-      console.error("Error uploading image:", error.message);
-    }
-  };
-
-  // usestate
-  const form = document.getElementById("form");
-  const form2 = document.getElementById("form2");
-  const main = document.getElementsByTagName("main")[0];
-  const [Products, setProducts] = useState({
+  const [formData, setFormData] = useState({
     fname: "",
     femail: "",
     fmsg: "",
+    fimg: "",
   });
 
-  const handleInputs = (e) => {
-    const { name, value } = e.target;
-    setProducts((prevProducts) => ({ ...prevProducts, [name]: value }));
+  // WebSocket – latest uploaded image
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:1000");
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.latestElement) {
+          const filename = data.latestElement.filename;
+          setLatestElementContent(filename);
+          setFormData((prev) => ({ ...prev, fimg: filename }));
+
+          import(`../Images/UploadedImages/${filename}`)
+            .then((img) => setPaintingImg(img.default))
+            .catch((err) => console.error("Cannot load image:", err));
+        }
+      } catch (err) {
+        console.error("WebSocket parse error:", err);
+      }
+    };
+
+    return () => ws.close();
+  }, []);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onload = (ev) => setPaintingImg(ev.target.result);
+    reader.readAsDataURL(file);
   };
 
-  const PostData = async (e) => {
-    e.preventDefault();
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      alert("Please select an image first");
+      return;
+    }
 
-    const { fname, femail, fmsg } = Products;
-    const res = await fetch("http://localhost:5001/Products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fname: fname,
-        femail: femail,
-        fmsg: fmsg,
-        fimg: latestElementContent,
-      }),
-    });
+    setIsUploading(true);
+    try {
+      const form = new FormData();
+      form.append("image", selectedFile);
+
+      await axios.post("http://localhost:1000/sell", form, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      setUploadSuccess(true);
+      setTimeout(() => setUploadSuccess(false), 3000);
+    } catch (err) {
+      console.error("Upload failed:", err);
+      alert("Upload failed");
+    } finally {
+      setIsUploading(false);
+    }
   };
+
+  const handleInputChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    if (!formData.fname || !formData.femail || !formData.fmsg || !formData.fimg) {
+      alert("Please complete all fields and upload an image");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:5001/Products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert("Artwork listed successfully!");
+        setFormData({ fname: "", femail: "", fmsg: "", fimg: "" });
+        setSelectedFile(null);
+        setPaintingImg(null);
+      } else {
+        alert("Failed to list artwork");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Submission error");
+    }
+  };
+
+  const isFormValid = formData.fname && formData.femail && formData.fmsg && paintingImg;
 
   return (
     <main>
       <div className="bahubali">
-        <div className="about-mainheading mainheading">Sell Paintings</div>
-        <div className="about-subheading subheading" id="sub">
-          <p>"Turn Your Art into Opportunity"</p>
-        </div>
+        <div className="about-mainheading">Sell Your Masterpiece</div>
+        <div className="about-subheading">"Turn Your Art Into Opportunity"</div>
       </div>
+
       <div className="contact-main">
+       
         <div className="sell-formdiv">
-          <form method="POST">
-            <h1 className="sell-formh1">Sell Paintings</h1>
+
+        
+          {/* Form column */}
+          <form>
+          
+
             <div id="form">
-              <p className="sell-formh1">"Turn Your Art into Opportunity"</p>
-              <div className="sell-formdesign" id="name">
+               <h1 className="sell-formh1">Submit Your Artwork</h1>
+          <p>"Showcase Your Talent"</p>
+
+              <div className="sell-formdesign">
                 <input
                   type="text"
                   name="fname"
+                  placeholder="Your Full Name"
+                  value={formData.fname}
+                  onChange={handleInputChange}
                   required
-                  placeholder="Your Name"
-                  className="place"
-                  onChange={handleInputs}
                 />
-                <b>
-                  <span className="formerror"></span>
-                </b>
               </div>
-              <div className="sell-formdesign" id="email">
+
+              <div className="sell-formdesign">
                 <input
                   type="email"
                   name="femail"
+                  placeholder="Your Email Address"
+                  value={formData.femail}
+                  onChange={handleInputChange}
                   required
-                  placeholder="Email"
-                  className="place"
-                  onChange={handleInputs}
-                />{" "}
-                <b>
-                  <span className="formerror"></span>
-                </b>
+                />
               </div>
-              <div className="sell-formdesign" id="msg">
+
+              <div className="sell-formdesign">
                 <input
-                  type="message"
+                  type="text"
                   name="fmsg"
+                  placeholder="Asking Price (e.g. $500)"
+                  value={formData.fmsg}
+                  onChange={handleInputChange}
                   required
-                  placeholder="Prize"
-                  className="place"
-                  onChange={handleInputs}
-                />{" "}
-                <b>
-                  <span className="formerror"></span>
-                </b>
+                />
               </div>
+
               <div className="Sell-img">
-                <label htmlFor="fileInput" className="custom-file-upload">
-                  Choose File
+                <label
+                  htmlFor="fileInput"
+                  className="custom-file-upload"
+                >
+                  Choose
                 </label>
                 <input
                   type="file"
                   id="fileInput"
-                  onChange={handleFileChange}
                   accept="image/*"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
                 />
-                <button id="sell-btn" onClick={handleUpload}>Upload</button>
-                <label htmlFor="sell-btn" className="custom-file-upload">
-                  Upload
-                </label>
+
+                <button
+                  type="button"
+                  className="custom-file-upload"
+                  onClick={handleUpload}
+                  disabled={isUploading || !selectedFile}
+                >
+                  {isUploading ? "Uploading..." : "Upload"}
+                </button>
               </div>
-              <button
-                className="contact-but but"
-                type="submit"
-                value="Send Message"
-                onClick={PostData}
-              >
-                Sell
-              </button>
-            </div>
-            <div className="formh1" id="form2">
-              Let us know how we can help you and our team will be in touch as
-              soon as possible!
+
+              {uploadSuccess && (
+                <span style={{ color: "#00ff9d", fontSize: "13px", textAlign: "center" }}>
+                  ✓ Image uploaded
+                </span>
+              )}
             </div>
           </form>
+
+          {/* Preview column – smaller */}
           <div className="preview">
-            <h1 className="sell-formh1">Preview</h1>
-            {/* <h1>{latestElementContent}</h1> */}
             <div className="Painting">
-              <img src={paintingImg} alt=""  className="painting-img"/>
+              {paintingImg ? (
+                <img
+                  src={paintingImg}
+                  alt="Artwork preview"
+                  className="painting-img"
+                />
+              ) : (
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "rgba(0,230,255,0.65)",
+                    fontSize: "13px",
+                    padding: "30px",
+                    textAlign: "center",
+                    gap: "10px",
+                  }}
+                >
+                 
+                  <div>Upload your artwork</div>
+                  <div style={{ fontSize: "11px", opacity: 0.55 }}>
+                    JPG • PNG • WebP
+                  </div>
+                </div>
+              )}
             </div>
+
+            {paintingImg && (
+              <div
+                style={{
+                  color: "rgba(0,255,180,0.9)",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                }}
+              >
+                ✓ Ready to list
+              </div>
+            )}
           </div>
+
+          {/* Centered List Artwork button – full premium style */}
+          <div className="center-submit-wrapper">
+            <button
+              type="button"
+              className="contact-but"
+              onClick={handleSubmit}
+              disabled={!isFormValid}
+            >
+              List Artwork
+            </button>
+          </div>
+
         </div>
       </div>
     </main>
