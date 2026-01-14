@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import About from './MyComponents/About';
 import Layout from './MyComponents/Layout';
 import Contact from './MyComponents/Contact';
-import Advertise from './MyComponents/Advertise';
 import Sell from './MyComponents/Sell';
 import Get from './MyComponents/Get';
 import Cart from './MyComponents/Cart';
@@ -23,8 +22,7 @@ function App() {
             <Route index element={<Layout body={<Home />} />} />
             <Route path="about" element={<Layout body={<About />} />} />
             <Route path="contact" element={<Layout body={<Contact />} />} />
-             <Route path="cart" element={<Layout body={<Cart />} />} />
-            <Route path="advertise" element={<Layout body={<Advertise />} />} />
+            <Route path="cart" element={<Layout body={<Cart />} />} />
             <Route path="sell" element={<Layout body={<Sell />} />} />
             <Route path="get" element={<Layout body={<Get />} />} />
 
