@@ -1,13 +1,14 @@
 
 
 import { useState } from "react";
+import im from "../Images/i7.jpeg";
 
 const initialItems = [
   {
     id: 1,
     title: "Abstract Canvas",
     price: 120,
-    image: "https://images.unsplash.com/photo-1549887534-1541e9326642"
+    image: im
   },
   {
     id: 2,
@@ -135,8 +136,12 @@ export default function CartPage() {
               borderRadius: '14px',
               textAlign: 'center',
               color: 'rgba(0, 230, 255, 0.7)',
-              fontSize: '13px',
-              lineHeight: '1.5'
+              fontSize: '18px',
+              lineHeight: '1.5',
+              height:'90px',
+              display:'flex',
+              alignItems:'center',
+              justifyContent:'center'
             }}>
               You will be redirected to PayPal to complete your purchase securely.
             </div>
@@ -145,14 +150,15 @@ export default function CartPage() {
           {/* CASH ON DELIVERY SECTION */}
           <div className={`payment-details ${payment === "cod" ? "show" : ""}`} >
             <div style={{
-              padding: '25px',
+              padding: '60px ',
               background: 'rgba(0, 230, 255, 0.08)',
               border: '1px solid rgba(0, 230, 255, 0.18)',
               borderRadius: '14px',
               textAlign: 'center',
               color: 'rgba(0, 230, 255, 0.8)',
-              fontSize: '14px',
-              lineHeight: '1.6'
+              fontSize: '18px',
+              lineHeight: '1.6',
+              height:'200px',
             }}>
               <p style={{ margin: '0 0 10px 0' }}>💵 Cash on Delivery</p>
               <p style={{ margin: 0, opacity: 0.7 }}>Pay when your order arrives at your doorstep</p>

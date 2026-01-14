@@ -5870,7 +5870,7 @@ a.info-item {
 /* CONTINUE SHOPPING */
 .continue-top {
   position: absolute;
-  top: 30px;
+  top: 1px;
   left: 30px;
   padding: 12px 26px;
   border-radius: 999px;
@@ -6011,23 +6011,28 @@ color:whitesmoke;
 .payment-nav {
   width: 100%;
   max-width: 600px;
-  height: 70px;
+
+  min-height: 70px;
+  height: auto;
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
   background: linear-gradient(135deg, rgba(0, 10, 16, 0.7), rgba(7, 30, 80, 0.3), rgba(0, 10, 16, 0.7));
   border: 1px solid rgba(0, 230, 255, 0.14);
-  border-radius: 30px;
+  border-radius: 14px;
   backdrop-filter: blur(15px);
   box-shadow: 0 25px 60px rgba(0, 230, 255, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  padding: 0 20px;
+  padding: 10px 20px;
 }
 
 /* PAYMENT BUTTONS */
 .payment-btn {
   padding: 12px 26px;
   border-radius: 999px;
+height: 90x;
   border: 2px solid rgba(0, 230, 255, 0.18);
   background: transparent;
   color: white;
@@ -6065,7 +6070,8 @@ color:whitesmoke;
 /* PAYMENT DETAILS FIXED HEIGHT */
 .payment-details {
   width: 100%;
-  max-width: 360px;
+  max-width: 600px;
+  
   margin: 35px auto;
  display: none;
   transform: translateY(40px) scale(0.95);
@@ -6077,6 +6083,7 @@ color:whitesmoke;
  display: block;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+  
 }
 
 
@@ -6095,6 +6102,7 @@ color:whitesmoke;
   backdrop-filter: blur(20px);
   transition: all 0.35s ease;
   font-size: 15.5px;
+  height: 70px;
 }
 
 .payment-details input:focus,
