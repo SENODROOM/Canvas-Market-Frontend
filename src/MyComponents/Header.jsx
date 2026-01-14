@@ -137,6 +137,11 @@ function Header() {
               Contact
             </NavLink>
           </li>
+            <li>
+            <NavLink to="/Cart" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+            Cart
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
               Sell Paintings
@@ -146,7 +151,9 @@ function Header() {
             <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
               Get Paintings
             </NavLink>
+             
           </li>
+           
         </ul>
 
         {/* Mobile menu toggle */}
@@ -164,8 +171,10 @@ function Header() {
       <div className={`mobile-nav ${menuActive ? 'active' : ''}`}>
         <NavLink to="/about" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>About</NavLink>
         <NavLink to="/contact" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Contact</NavLink>
+        <NavLink to="/Cart" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Cart</NavLink>
         <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Sell Paintings</NavLink>
         <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Get Paintings</NavLink>
+         
       </div>
     </header>
   );
