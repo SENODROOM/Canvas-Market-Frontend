@@ -6,7 +6,7 @@ import imago from '../Images/image5.jpg';
 import tango from '../Images/image6.jpg';
 import sango from '../Images/image7.jpg';
 import mango from '../Images/image8.jpg';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 export function Sliders() {
 
   const portfolioData = [
@@ -27,48 +27,6 @@ export function Sliders() {
 
   // Create items & indicators once
   useEffect(() => {
-    const carousel = carouselRef.current;
-    const indicatorsContainer = indicatorsRef.current;
-    if (!carousel || !indicatorsContainer) return;
-
-    // ensure empty initially
-    carousel.innerHTML = "";
-    indicatorsContainer.innerHTML = "";
-    itemsRef.current = [];
-
-    portfolioData.forEach((data, index) => {
-      const item = document.createElement('div');
-      item.className = 'carousel-item';
-      item.dataset.index = index;
-
-      const techBadges = data.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('');
-
-      item.innerHTML = `
-        <div class="card">
-          <div class="card-image"><img src="${data.image}" alt="${data.title}" /></div>
-          <h3 class="card-title">${data.title}</h3>
-          <p class="card-description">${data.description}</p>
-          <div class="card-tech">${techBadges}</div>
-          
-            
-            <button class="card-cta">Explore</button>
-        </div>
-      `;
-
-      // base transition style so transforms animate
-      item.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, z-index 0s';
-
-      carousel.appendChild(item);
-      itemsRef.current.push(item);
-
-      const indicator = document.createElement('div');
-      indicator.className = 'indicator';
-      if (index === 0) indicator.classList.add('active');
-      indicator.dataset.index = index;
-      indicator.addEventListener('click', () => goToSlide(index));
-      indicatorsContainer.appendChild(indicator);
-    });
-
     // initial layout
     updateCarouselStyles();
 
@@ -179,8 +137,50 @@ export function Sliders() {
         {/* CAROUSEL */}
         <section className="hero" id="home">
           <div className="carousel-container" ref={heroRef}>
-            <div className="carousel" id="carousel" ref={carouselRef}></div>
-            <div className="carousel-indicators" id="indicators" ref={indicatorsRef}></div>
+            <div className="carousel" id="carousel" ref={carouselRef}>
+              {portfolioData.map((data, index) => (
+                <div
+                  key={data.id}
+                  className="carousel-item"
+                  data-index={index}
+                  ref={(el) => (itemsRef.current[index] = el)}
+                  style={{ transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, z-index 0s' }}
+                >
+                  <div className="card">
+                    <div className="card-image">
+                      <img src={data.image} alt={data.title} />
+                    </div>
+                    <h3 className="card-title">{data.title}</h3>
+                    <p className="card-description">{data.description}</p>
+                    <div className="card-tech">
+                      {data.tech.map((tech) => (
+                        <span key={tech} className="tech-badge">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <button className="card-cta">
+                      <NavLink
+                        to="/painting"
+                        className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}
+                      >
+                        Explore
+                      </NavLink>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="carousel-indicators" id="indicators" ref={indicatorsRef}>
+              {portfolioData.map((_, index) => (
+                <div
+                  key={index}
+                  className={`indicator ${index === 0 ? 'active' : ''}`}
+                  data-index={index}
+                  onClick={() => goToSlide(index)}
+                ></div>
+              ))}
+            </div>
           </div>
         </section>
       </div>
