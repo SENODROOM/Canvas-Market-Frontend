@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useRef } from 'react';
+import { createContext, useContext, useState, useRef } from 'react';
 
 const OnScreenContext = createContext();
 
