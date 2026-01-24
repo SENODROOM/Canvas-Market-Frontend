@@ -17,7 +17,7 @@ function Get() {
         };
         console.log(data);
         fetchData();
-    }, []);
+    }, [data]);
 
 
     return (
