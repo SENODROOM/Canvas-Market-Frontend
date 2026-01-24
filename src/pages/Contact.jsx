@@ -1,12 +1,4 @@
-// import ContactCSS from '../assets/css/contact.css'
-// import ContactCSS2 from '../assets/css/formstyle.css'
-import facebooklogo from '../Images/facebook.png';
-import twitterlogo from '../Images/twitter.png';
-import instalogo from '../Images/insta.png';
-import linklogo from '../Images/link.png';
-import mediumlogo from '../Images/medium.png';
-import pinlogo from '../Images/pin.png';
-import axios from 'axios';
+
 import { useState } from 'react';
 
 function Contact() {
@@ -18,16 +10,6 @@ function Contact() {
         fname: "", femail: "", fmsg: ""
     });
 
-    let name, value;
-    // const handleInputs=(e)=>{
-    //     console.log(e);
-    //     name=e.target.name;
-    //     value= e.target.value;
-    //     setUser((prevUser) => ({
-    //         ...prevUser,
-    //         [name]: value,
-    //     }));
-    // }
 
     const handleInputs = (e) => {
         const { name, value } = e.target;

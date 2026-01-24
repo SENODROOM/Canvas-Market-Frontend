@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
-import Section from '../MyComponents/SectionDropDown';
-import {
-  ChangesToThisPrivacyPolicy,
-  ContactUs,
-  CookiesAndSimilarTechnologies,
-  HowWeUseYourInformation,
-  InformationWeCollect,
-  Security,
-  ThirdPartyLinks,
-  YourChoices
-} from '../Data/PrivacyPolicy';
 
-import image from '../Images/about.jpg';
+
 
 import {
   FaPalette,
@@ -75,39 +64,13 @@ const features = [
   }
 ];
 
-const PrivacyPolicy = () => {
+ export const WhyChooseUs = () => {
   const [expanded, setExpanded] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <main>
-
-      {/* ABOUT HEADING */}
-      <section className="about-heading">
-        <h1 className="about-title">About Us</h1>
-        <p className="about-tagline">
-          A creative space built to celebrate art, empower artists,
-          and connect people through meaningful visuals.
-        </p>
-      </section>
-
-      {/* ABOUT DESCRIPTION */}
-      <div className="about-description">
-        <div className="about-left">
-          <h1>The Art Behind Canvas Market</h1>
-          <p>
-            Canvas Market connects talented artists with art lovers who value
-            creativity and originality. We believe art is more than decoration—
-            it’s expression, emotion, and identity.
-          </p>
-        </div>
-
-        <div className="about-image">
-          <img src={image} alt="painting" />
-        </div>
-      </div>
-
-      {/* WHY CHOOSE US */}
+   <div>
+     
       <section className="why-choose-us">
         <h2 className="section-title">Why Choose Us</h2>
 
@@ -155,22 +118,7 @@ const PrivacyPolicy = () => {
         </button>
       </section>
 
-      {/* PRIVACY POLICY */}
-      <div className="privacy-policy-container">
-        <h1 className="privacy-policy-header">Privacy And Policy</h1>
-
-        <Section id="1" heading="Information We Collect" data={InformationWeCollect} />
-        <Section id="2" heading="How We Use Your Information" data={HowWeUseYourInformation} />
-        <Section id="3" heading="Cookies and Similar Technologies" data={CookiesAndSimilarTechnologies} />
-        <Section id="4" heading="Third-Party Links" data={ThirdPartyLinks} />
-        <Section id="5" heading="Security" data={Security} />
-        <Section id="6" heading="Your Choices" data={YourChoices} />
-        <Section id="7" heading="Changes to this Privacy Policy" data={ChangesToThisPrivacyPolicy} />
-        <Section id="8" heading="Contact Us" data={ContactUs} />
-      </div>
-
-    </main>
+ </div>
   );
 };
 
-export default PrivacyPolicy;

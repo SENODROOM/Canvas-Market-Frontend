@@ -153,6 +153,12 @@ function Header() {
             </NavLink>
              
           </li>
+              <li>
+            <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+              Paintings
+            </NavLink>
+             
+          </li>
            
         </ul>
 
@@ -174,7 +180,8 @@ function Header() {
         <NavLink to="/Cart" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Cart</NavLink>
         <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Sell Paintings</NavLink>
         <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Get Paintings</NavLink>
-         
+          <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Paintings</NavLink>
+           
       </div>
     </header>
   );
