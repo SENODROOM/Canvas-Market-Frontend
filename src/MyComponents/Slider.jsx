@@ -159,14 +159,13 @@ export function Sliders() {
                         </span>
                       ))}
                     </div>
-                    <button className="card-cta">
-                      <NavLink
-                        to="/painting"
-                        className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}
-                      >
+                    <NavLink
+                      to="/painting"
+                    >
+                      <button className="card-cta">
                         Explore
-                      </NavLink>
-                    </button>
+                      </button>
+                    </NavLink>
                   </div>
                 </div>
               ))}
