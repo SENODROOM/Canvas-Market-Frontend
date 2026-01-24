@@ -6296,7 +6296,7 @@ a.info-item {
     position: absolute;
     inset: 0;
     border: 3px solid transparent;
-    border-image: linear-gradient(135deg, var(--orb-2-color), var(--orb-3-color)) 1;
+    /* border-image: linear-gradient(135deg, var(--orb-2-color), var(--orb-3-color)) 1; */
     transition: all 0.6s ease;
 }
 
