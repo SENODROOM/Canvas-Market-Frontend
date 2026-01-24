@@ -40,8 +40,8 @@ export function Sliders() {
   const goToSlide = (index) => {
     setCurrentIndex(((index % portfolioData.length) + portfolioData.length) % portfolioData.length);
   };
-  const nextSlide = () => setCurrentIndex(prev => (prev + 1) % portfolioData.length);
-  const prevSlide = () => setCurrentIndex(prev => (prev - 1 + portfolioData.length) % portfolioData.length);
+  // const nextSlide = () => setCurrentIndex(prev => (prev + 1) % portfolioData.length);
+  // const prevSlide = () => setCurrentIndex(prev => (prev - 1 + portfolioData.length) % portfolioData.length);
 
   // central function that only mutates styles of existing nodes
   const updateCarouselStyles = () => {
@@ -108,7 +108,7 @@ export function Sliders() {
   const heroRef = useRef(null);
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.pageYOffset;
+      // const scrolled = window.pageYOffset;
       if (heroRef.current) heroRef.current.style.transform = ``;
     };
     window.addEventListener('scroll', handleScroll);

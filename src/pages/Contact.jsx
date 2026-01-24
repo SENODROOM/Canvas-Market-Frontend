@@ -30,10 +30,10 @@ function Contact() {
                 fname: fname, femail: femail, fmsg: fmsg
             })
         });
-        const data = await res.json();
+        await res.json();
         if (res.ok) {
-            form.style.display= 'none';
-            form2.style.display= 'flex';
+            form.style.display = 'none';
+            form2.style.display = 'flex';
             main.style.margin = "200px 0 250px 0";
         } else {
             console.error("Error in response:", res.statusText);
@@ -58,19 +58,19 @@ function Contact() {
                                 className="formerror"></span></b>
                         </div>
                         <div className="formdesign" id="msg">
-                            <textarea name="fmsg" required placeholder="Message" className="place " onChange={handleInputs}  /> <b><span
+                            <textarea name="fmsg" required placeholder="Message" className="place " onChange={handleInputs} /> <b><span
                                 className="formerror"></span></b>
                         </div>
                         <button className="contact-but but" type="submit" value="Send Message" onClick={PostData}>Send Message</button>
                     </div>
-                    <div  id="form2">
+                    <div id="form2">
                         Let us know how we can help you and our team will be in touch as soon as possible!
                     </div>
                 </form>
 
             </div>
 
-            
+
         </main>
     )
 }

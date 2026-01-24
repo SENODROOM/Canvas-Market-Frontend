@@ -103,6 +103,7 @@ function Sell() {
       } else {
         alert("Failed to list artwork");
       }
+      console.log(latestElementContent);
     } catch (err) {
       console.error(err);
       alert("Submission error");
@@ -119,130 +120,130 @@ function Sell() {
       </div>
 
       <div className="contact-main">
-       
+
         <div className="sell-formdiv">
 
-        <div className="main-sell">
-          {/* Form column */}
-          <form>
-          
+          <div className="main-sell">
+            {/* Form column */}
+            <form>
 
-            <div id="form">
-               <h1 className="sell-formh1">Submit Your Artwork</h1>
-          <p>"Showcase Your Talent"</p>
 
-              <div className="sell-formdesign">
-                <input
-                  type="text"
-                  name="fname"
-                  placeholder="Your Full Name"
-                  value={formData.fname}
-                  onChange={handleInputChange}
-                  required
-                />
+              <div id="form">
+                <h1 className="sell-formh1">Submit Your Artwork</h1>
+                <p>"Showcase Your Talent"</p>
+
+                <div className="sell-formdesign">
+                  <input
+                    type="text"
+                    name="fname"
+                    placeholder="Your Full Name"
+                    value={formData.fname}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="sell-formdesign">
+                  <input
+                    type="email"
+                    name="femail"
+                    placeholder="Your Email Address"
+                    value={formData.femail}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="sell-formdesign">
+                  <input
+                    type="text"
+                    name="fmsg"
+                    placeholder="Asking Price (e.g. $500)"
+                    value={formData.fmsg}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="Sell-img">
+                  <label
+                    htmlFor="fileInput"
+                    className="custom-file-upload"
+                  >
+                    Choose
+                  </label>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    style={{ display: "none" }}
+                  />
+
+                  <button
+                    type="button"
+                    className="custom-file-upload"
+                    onClick={handleUpload}
+                    disabled={isUploading || !selectedFile}
+                  >
+                    {isUploading ? "Uploading..." : "Upload"}
+                  </button>
+                </div>
+
+                {uploadSuccess && (
+                  <span style={{ color: "#00ff9d", fontSize: "13px", textAlign: "center" }}>
+                    ✓ Image uploaded
+                  </span>
+                )}
+              </div>
+            </form>
+
+            {/* Preview column – smaller */}
+            <div className="preview">
+              <div className="Painting">
+                {paintingImg ? (
+                  <img
+                    src={paintingImg}
+                    alt="Artwork preview"
+                    className="painting-img"
+                  />
+                ) : (
+                  <div
+                    style={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "rgba(0,230,255,0.65)",
+                      fontSize: "13px",
+                      padding: "30px",
+                      textAlign: "center",
+                      gap: "10px",
+                    }}
+                  >
+
+                    <div>Upload your artwork</div>
+                    <div style={{ fontSize: "11px", opacity: 0.55 }}>
+                      JPG • PNG • WebP
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="sell-formdesign">
-                <input
-                  type="email"
-                  name="femail"
-                  placeholder="Your Email Address"
-                  value={formData.femail}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="sell-formdesign">
-                <input
-                  type="text"
-                  name="fmsg"
-                  placeholder="Asking Price (e.g. $500)"
-                  value={formData.fmsg}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="Sell-img">
-                <label
-                  htmlFor="fileInput"
-                  className="custom-file-upload"
-                >
-                  Choose
-                </label>
-                <input
-                  type="file"
-                  id="fileInput"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                />
-
-                <button
-                  type="button"
-                  className="custom-file-upload"
-                  onClick={handleUpload}
-                  disabled={isUploading || !selectedFile}
-                >
-                  {isUploading ? "Uploading..." : "Upload"}
-                </button>
-              </div>
-
-              {uploadSuccess && (
-                <span style={{ color: "#00ff9d", fontSize: "13px", textAlign: "center" }}>
-                  ✓ Image uploaded
-                </span>
-              )}
-            </div>
-          </form>
-
-          {/* Preview column – smaller */}
-          <div className="preview">
-            <div className="Painting">
-              {paintingImg ? (
-                <img
-                  src={paintingImg}
-                  alt="Artwork preview"
-                  className="painting-img"
-                />
-              ) : (
+              {paintingImg && (
                 <div
                   style={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "rgba(0,230,255,0.65)",
+                    color: "rgba(0,255,180,0.9)",
                     fontSize: "13px",
-                    padding: "30px",
-                    textAlign: "center",
-                    gap: "10px",
+                    fontWeight: 500,
                   }}
                 >
-                 
-                  <div>Upload your artwork</div>
-                  <div style={{ fontSize: "11px", opacity: 0.55 }}>
-                    JPG • PNG • WebP
-                  </div>
+                  ✓ Ready to list
                 </div>
               )}
             </div>
-
-            {paintingImg && (
-              <div
-                style={{
-                  color: "rgba(0,255,180,0.9)",
-                  fontSize: "13px",
-                  fontWeight: 500,
-                }}
-              >
-                ✓ Ready to list
-              </div>
-            )}
           </div>
-</div>
           {/* Centered List Artwork button – full premium style */}
           <div className="center-submit-wrapper">
             <button

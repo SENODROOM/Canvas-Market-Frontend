@@ -7,9 +7,9 @@ function Header() {
   const neuralLines = useRef([]);
   const headerRef = useRef(null);
 
-  const setNeuralLineRef = (el, index) => {
-    neuralLines.current[index] = el;
-  };
+  // const setNeuralLineRef = (el, index) => {
+  //   neuralLines.current[index] = el;
+  // };
 
   useEffect(() => {
     // Scroll handling for header and parallax shapes
@@ -102,20 +102,20 @@ function Header() {
     };
   }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const btn = e.currentTarget;
-    btn.innerHTML = 'TRANSMITTING...';
-    btn.style.background = 'linear-gradient(45deg, #8000ff, #00ffff)';
-    setTimeout(() => {
-      btn.innerHTML = 'TRANSMISSION COMPLETE';
-      btn.style.background = 'linear-gradient(45deg, #00ff00, #00ffff)';
-      setTimeout(() => {
-        btn.innerHTML = 'TRANSMIT TO MATRIX';
-        btn.style.background = 'linear-gradient(45deg, #00ffff, #ff0080)';
-      }, 2000);
-    }, 1500);
-  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   const btn = e.currentTarget;
+  //   btn.innerHTML = 'TRANSMITTING...';
+  //   btn.style.background = 'linear-gradient(45deg, #8000ff, #00ffff)';
+  //   setTimeout(() => {
+  //     btn.innerHTML = 'TRANSMISSION COMPLETE';
+  //     btn.style.background = 'linear-gradient(45deg, #00ff00, #00ffff)';
+  //     setTimeout(() => {
+  //       btn.innerHTML = 'TRANSMIT TO MATRIX';
+  //       btn.style.background = 'linear-gradient(45deg, #00ffff, #ff0080)';
+  //     }, 2000);
+  //   }, 1500);
+  // };
 
   return (
     <header className="glass" ref={headerRef}>
@@ -137,9 +137,9 @@ function Header() {
               Contact
             </NavLink>
           </li>
-            <li>
+          <li>
             <NavLink to="/Cart" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
-            Cart
+              Cart
             </NavLink>
           </li>
           <li>
@@ -151,15 +151,15 @@ function Header() {
             <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
               Get Paintings
             </NavLink>
-             
+
           </li>
-              <li>
+          <li>
             <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
               Paintings
             </NavLink>
-             
+
           </li>
-           
+
         </ul>
 
         {/* Mobile menu toggle */}
@@ -180,8 +180,8 @@ function Header() {
         <NavLink to="/Cart" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Cart</NavLink>
         <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Sell Paintings</NavLink>
         <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Get Paintings</NavLink>
-          <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Paintings</NavLink>
-           
+        <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Paintings</NavLink>
+
       </div>
     </header>
   );

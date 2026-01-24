@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Section from '../MyComponents/SectionDropDown';
 import {
   ChangesToThisPrivacyPolicy,
@@ -11,7 +10,7 @@ import {
   YourChoices
 } from '../Data/PrivacyPolicy';
 
- export function PrivacyAndPolicy () {
+export function PrivacyAndPolicy() {
 
 
   return (
