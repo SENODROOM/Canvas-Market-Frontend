@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useContext, useState, useRef } from 'react';
+import React, { createContext, useContext, useState, useRef } from 'react';
 
 const OnScreenContext = createContext();
 
@@ -19,7 +19,7 @@ export const OnScreenProvider = ({ children }) => {
 
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top >= 0 && rect.bottom <= (windowHeight+200);
+        return rect.top >= 0 && rect.bottom <= (windowHeight + 200);
     };
 
     const checkIfOnScreen = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Paintings from "./paintings";
 
@@ -15,7 +15,7 @@ function Get() {
                 console.error('Error fetching data:', error);
             }
         };
-
+        console.log(data);
         fetchData();
     }, []);
 
