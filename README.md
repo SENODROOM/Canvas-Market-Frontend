@@ -8,16 +8,16 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Current Status](#current-status)
-- [Features Implemented](#features-implemented)
-- [Planned Features](#planned-features)
-- [Tech Stack](#tech-stack)
-- [Project Architecture](#project-architecture)
-- [Getting Started](#getting-started)
-- [Development Roadmap](#development-roadmap)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
+- [Overview](#-overview)
+- [Current Status](#-current-status)
+- [Features Implemented](#-features-implemented)
+- [Planned Features](#-planned-features)
+- [Tech Stack](#-tech-stack)
+- [Project Architecture](#-project-architecture)
+- [Getting Started](#-getting-started)
+- [Development Roadmap](#-development-roadmap)
+- [Future Enhancements](#-future-enhancements)
+- [Contributing](#-contributing)
 
 ---
 
