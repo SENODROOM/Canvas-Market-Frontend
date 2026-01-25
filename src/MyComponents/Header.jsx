@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from "../Images/logo2cut (1).png";
-
+import profile from "../Images/profile.png"
 function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const neuralLines = useRef([]);
@@ -153,12 +153,13 @@ function Header() {
             </NavLink>
 
           </li>
-          <li>
-            <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
-              Paintings
+            <li>
+            <NavLink to="/Account" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+             <img src={profile}></img>
             </NavLink>
 
           </li>
+      
 
         </ul>
 
@@ -180,7 +181,7 @@ function Header() {
         <NavLink to="/Cart" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Cart</NavLink>
         <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Sell Paintings</NavLink>
         <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Get Paintings</NavLink>
-        <NavLink to="/Painting" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Paintings</NavLink>
+       <NavLink to="/Account" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}><img src={profile}></img></NavLink>
 
       </div>
     </header>

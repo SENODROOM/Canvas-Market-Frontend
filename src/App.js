@@ -8,7 +8,7 @@ import Sell from './MyComponents/Sell';
 import Get from './MyComponents/Get';
 import Cart from './MyComponents/Cart';
 import Painting from './pages//Painting';
-
+import Account from './pages/Account';
 import { OnScreenProvider } from './ContextProviders/OnScreenContext';
 import ScrollToTop from './utils/ScrollToTop';
 
@@ -27,6 +27,7 @@ function App() {
             <Route path="sell" element={<Layout body={<Sell />} />} />
             <Route path="get" element={<Layout body={<Get />} />} />
  <Route path="painting" element={<Layout body={<Painting />} />} />
+ <Route path="account" element={<Layout body={<Account />} />} />
             {/* <Route path="*" element={<About00 />} /> */}
           </Routes>
         </BrowserRouter>
