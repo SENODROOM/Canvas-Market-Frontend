@@ -131,10 +131,10 @@ export function Sliders() {
                 >
                   <div className="card">
                     <div className="card-image">
-                      <img src={data.image} alt={data.title} />
+                      <img src={data.image} alt={data.name} />
                     </div>
-                    <h3 className="card-title">{data.title}</h3>
-                    <p className="card-description">{data.description}</p>
+                    <h3 className="card-title">{data.name}</h3>
+                    <p className="card-description">-{data.artist}</p>
                     <div className="card-tech">
                       {data.tech.map((tech) => (
                         <span key={tech} className="tech-badge">
@@ -144,6 +144,7 @@ export function Sliders() {
                     </div>
                     <NavLink
                       to="/painting"
+                      state={{ painting: data }}
                     >
                       <button className="card-cta">
                         Explore

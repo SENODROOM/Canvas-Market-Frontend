@@ -4,39 +4,20 @@ import { ProductInfo } from '../MyComponents/ProductInfo';
 import { DetailsTabs } from '../MyComponents/DetailsTabs';
 import { ReviewsSection } from '../MyComponents/ReviewsSection';
 import { CosmicBackground } from '../MyComponents/CosmicBackground';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ProductPage = () => {
   const [activeTab, setActiveTab] = useState('description');
   const [imageLoaded, setImageLoaded] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const product = location.state?.painting;
 
-  // Single artwork data
-  const product = {
-    id: 1,
-    name: 'Celestial Dreams',
-    artist: 'Ethereal Art Studio',
-    price: 299.99,
-    rating: 4.8,
-    reviewCount: 156,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&q=80',
-    description: 'An exquisite masterpiece that captures the essence of cosmic wonder and artistic brilliance. This original canvas print features museum-quality materials and archival inks that preserve its vibrant colors for generations. Each piece is individually crafted and authenticated, making it a unique addition to any art collection.',
-    features: [
-      'Museum-Quality Canvas',
-      'Archival Fade-Resistant Inks',
-      'Hand-Assembled Frame',
-      'Certificate of Authenticity',
-      'Ready to Hang',
-      'UV Protection Coating'
-    ],
-    specifications: {
-      'Medium': 'Premium Cotton Canvas',
-      'Frame Material': 'Solid Pine Wood',
-      'Print Technique': 'Giclée Printing',
-      'Dimensions': '24" × 36" (60cm × 90cm)',
-      'Edition': 'Limited Edition of 100',
-      'Signed': 'Hand-signed by Artist'
-    }
-  };
+  // Safety check (important)
+  if (!product) {
+    navigate("/");
+    return null;
+  }
 
   const reviews = [
     {
@@ -88,24 +69,24 @@ const ProductPage = () => {
 
       {/* Main Content Container */}
       <div className="content-wrapper">
-        <ArtworkDisplay 
+        <ArtworkDisplay
           product={product}
           imageLoaded={imageLoaded}
           setImageLoaded={setImageLoaded}
         />
 
-        <ProductInfo 
+        <ProductInfo
           product={product}
           handleBuyNow={handleBuyNow}
         />
 
-        <DetailsTabs 
+        <DetailsTabs
           product={product}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
 
-        <ReviewsSection 
+        <ReviewsSection
           product={product}
           reviews={reviews}
         />
