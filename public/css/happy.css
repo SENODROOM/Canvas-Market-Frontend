@@ -8567,7 +8567,7 @@ a.info-item {
   transform: translateX(-120%);
   transition: transform 0.7s ease;
   border-radius: 50px;
-}
+}  
 
 .login-submit-btn:hover {
   transform: translateY(-3px) scale(1.02);
@@ -9675,15 +9675,4 @@ textarea.field-input {
   }
 }
 
-/* ==================================== 
-   REDUCED MOTION
-==================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+
