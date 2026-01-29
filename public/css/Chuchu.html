@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sorry Chuchu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    user-select:none;
+}
+
+body{
+    min-height:100vh;
+    background:radial-gradient(circle at top,#ffd6d6,#ff8a8a);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* TITLE */
+h1{
+    margin-top:30px;
+    font-size:60px;
+    color:#7a0000;
+    text-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+/* ENVELOPE */
+.envelope-wrapper{
+    margin-top:70px;
+    position:relative;
+    width:320px;
+    height:220px;
+    cursor:pointer;
+}
+
+.envelope{
+    width:100%;
+    height:100%;
+    background:linear-gradient(145deg,#fff5f5,#ffdada);
+    border-radius:14px;
+    box-shadow:0 25px 45px rgba(0,0,0,.3);
+    position:relative;
+    overflow:hidden;
+}
+
+.envelope::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:55%;
+    background:linear-gradient(145deg,#ffecec,#ffbaba);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top;
+    transition:transform 1s ease;
+}
+
+.envelope.open::before{
+    transform:rotateX(180deg);
+}
+
+.envelope-text{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color:#8b0000;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* LETTER */
+.letter-container{
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+    width:260px;
+    max-height:0;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.thread{
+    width:2px;
+    background:repeating-linear-gradient(
+        to bottom,
+        #5c2b2b 0px,
+        #5c2b2b 6px,
+        transparent 6px,
+        transparent 12px
+    );
+}
+
+/* STRIPS */
+.strip{
+    width:240px;
+    background:#fffdf7;
+    border-radius:6px;
+    margin:12px 0;
+    padding:14px;
+    font-size:18px;
+    color:#4a1c1c;
+    text-align:center;
+    box-shadow:0 8px 14px rgba(0,0,0,.18);
+}
+
+/* PULL TAB */
+.pull-tab{
+    margin-top:10px;
+    width:170px;
+    height:42px;
+    background:linear-gradient(145deg,#ff8f8f,#ff4b4b);
+    border-radius:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:bold;
+    cursor:grab;
+    box-shadow:0 12px 22px rgba(0,0,0,.35);
+}
+
+/* PARTICLES */
+.heart, .tear{
+    position:fixed;
+    pointer-events:none;
+}
+
+.heart{
+    color:rgba(255,0,60,.7);
+    font-size:18px;
+    animation:floatUp 6s linear forwards;
+}
+
+.tear{
+    width:6px;
+    height:12px;
+    background:rgba(255,255,255,.7);
+    border-radius:50%;
+    animation:fallDown 5s linear forwards;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-120vh);opacity:0;}
+}
+
+@keyframes fallDown{
+    from{transform:translateY(-20px);opacity:1;}
+    to{transform:translateY(120vh);opacity:0;}
+}
+
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<h1>SORRY CHUCHU 😭</h1>
+
+<div class="envelope-wrapper" id="openEnvelope">
+    <div class="envelope" id="envelope">
+        <div class="envelope-text">
+            <div>Sorry</div>
+            <div style="margin-top:10px;">Open it</div>
+        </div>
+    </div>
+
+    <div class="letter-container hidden" id="letter">
+        <div class="thread" id="thread"></div>
+
+        <div class="strip">I am really sorry…</div>
+        <div class="strip">I never meant to hurt you</div>
+        <div class="strip">Every moment feels heavy</div>
+        <div class="strip">Without your smile</div>
+        <div class="strip">I miss you deeply</div>
+        <div class="strip">Please forgive me</div>
+        <div class="strip">I promise to be better</div>
+        <div class="strip">You mean everything to me</div>
+        <div class="strip">Write your words here ✍️</div>
+        <div class="strip">Always yours ❤️</div>
+
+        <div class="pull-tab" id="pullTab">⬇ Pull it</div>
+    </div>
+</div>
+
+<script>
+const envelope = document.getElementById("envelope");
+const openEnvelope = document.getElementById("openEnvelope");
+const letter = document.getElementById("letter");
+const pullTab = document.getElementById("pullTab");
+const thread = document.getElementById("thread");
+
+let isDragging=false;
+let startY=0;
+let currentHeight=0;
+const maxHeight=1400;
+
+/* OPEN ENVELOPE */
+openEnvelope.addEventListener("click",()=>{
+    envelope.classList.add("open");
+    setTimeout(()=>letter.classList.remove("hidden"),800);
+});
+
+/* DESKTOP */
+pullTab.addEventListener("mousedown",(e)=>{
+    isDragging=true;
+    startY=e.clientY;
+    pullTab.style.cursor="grabbing";
+});
+
+/* MOBILE */
+pullTab.addEventListener("touchstart",(e)=>{
+    isDragging=true;
+    startY=e.touches[0].clientY;
+});
+
+/* STOP DRAG */
+document.addEventListener("mouseup",()=>isDragging=false);
+document.addEventListener("touchend",()=>isDragging=false);
+
+/* DRAG MOVE */
+document.addEventListener("mousemove",drag);
+document.addEventListener("touchmove",drag,{passive:false});
+
+function drag(e){
+    if(!isDragging) return;
+
+    let y = e.clientY || e.touches[0].clientY;
+    let diff = y - startY;
+    startY = y;
+
+    currentHeight += diff;
+    currentHeight = Math.max(0,Math.min(currentHeight,maxHeight));
+
+    letter.style.maxHeight=currentHeight+"px";
+    thread.style.height=currentHeight+"px";
+}
+
+/* HEART PARTICLES */
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.bottom="-20px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},700);
+
+/* TEAR PARTICLES */
+setInterval(()=>{
+    const tear=document.createElement("div");
+    tear.className="tear";
+    tear.style.left=Math.random()*100+"vw";
+    tear.style.top="-20px";
+    document.body.appendChild(tear);
+    setTimeout(()=>tear.remove(),5000);
+},500);
+</script>
+
+</body>
+</html>

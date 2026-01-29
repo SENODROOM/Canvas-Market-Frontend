@@ -718,7 +718,6 @@ li {
         0 15px 35px rgba(0, 0, 0, 0.8),
         0 0 25px rgba(7, 122, 253, 0.25);
 
-    animation: glowPulse 3s ease-in-out infinite;
     margin: 100px auto;
     display: flex;
     align-items: center;
@@ -1385,7 +1384,7 @@ nav {
 
 .mobile-nav.active {
     display: flex;
-    animation: slideDown 0.3s ease-out;
+    
 }
 
 @keyframes slideDown {
@@ -9609,17 +9608,20 @@ textarea.field-input {
     width: 80px;
     height: 80px;
   }
-
-  .header-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .account-switcher {
-    width: 100%;
-    left: 0;
-    right: 0;
-  }
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+ 
+      .account-switcher {
+        width: 100%;
+        left: 0;
+        right: 0;
+        position: absolute;
+        top: 90%;
+    }
+  
 
   .avatar-image,
   .avatar-emoji {
