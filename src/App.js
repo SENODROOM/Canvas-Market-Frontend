@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Layout from './MyComponents/Layout';
 import Contact from './pages/Contact';
-import Sell from './MyComponents/Sell';
+import Sell from './pages/Sell';
 import Get from './MyComponents/Get';
 import Cart from './MyComponents/Cart';
 import Painting from './pages//Painting';
