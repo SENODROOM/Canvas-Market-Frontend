@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HelpCircle, ShoppingCart, Package, RefreshCw, Mail, Shield, ChevronDown, Search, Phone, MessageCircle, MapPin } from 'lucide-react';
 
 
@@ -6,6 +7,9 @@ export default function CustomerCare() {
   const [activeSection, setActiveSection] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedFaq, setExpandedFaq] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const sectionRefs = useRef({});
 
   const sections = [
     {
@@ -136,6 +140,49 @@ export default function CustomerCare() {
     }
   ];
 
+  // Auto-open section based on URL hash from footer links
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    
+    if (hash) {
+      // Immediately open the section
+      setActiveSection(hash);
+      
+      // Direct instant scroll to section
+      requestAnimationFrame(() => {
+        const element = sectionRefs.current[hash];
+        if (element) {
+          // Get element position and scroll instantly
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetPosition = rect.top + scrollTop - 80; // 80px offset from top
+          
+          window.scrollTo(0, targetPosition); // Instant scroll without behavior option
+        }
+      });
+    }
+  }, [location.hash]);
+
+  // Additional scroll on mount for initial page load
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        const element = sectionRefs.current[hash];
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetPosition = rect.top + scrollTop - 80;
+          
+          window.scrollTo(0, targetPosition);
+        }
+      }, 50);
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   const filteredSections = sections.filter(section =>
     section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     section.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -184,6 +231,8 @@ export default function CustomerCare() {
             return (
               <div
                 key={section.id}
+                id={section.id}
+                ref={(el) => (sectionRefs.current[section.id] = el)}
                 className={`section-card ${isActive ? 'active' : ''}`}
                 style={{ animationDelay: `${index * 0.08}s` }}
               >

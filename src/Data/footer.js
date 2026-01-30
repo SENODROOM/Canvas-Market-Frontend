@@ -1,26 +1,28 @@
+// Data/footer.js - Just update this file in your project
+
 export const CustomerCareOptions = [
     {
-        option:  "HELP CENTER",
-        path: "/help-center"
+        option: "Help Center",
+        path: "/customercare#help"
     },
     {
-        option:  "HOW TO BUY",
-        path: "/how-to-buy"
+        option: "How to Buy",
+        path: "/customercare#buy"
     },
     {
-        option:  "CORPORATE & BULK PURCHASING",
-        path: "/corporate-bulk-purchasing"
+        option: "Corporate & Bulk",
+        path: "/customercare#bulk"
     },
     {
-        option:  "RETURNS & REFUNDS",
-        path: "/returns-refunds"
+        option: "Returns & Refunds",
+        path: "/customercare#returns"
     },
     {
-        option:  "CONTACT US",
-        path: "/contact-us"
+        option: "Contact Us",
+        path: "/customercare#contact"
     },
     {
-        option:  "PURCHASE PROTECTION",
-        path: "/purchase-protection"
-    },   
-]
+        option: "Purchase Protection",
+        path: "/customercare#protection"
+    }
+];
