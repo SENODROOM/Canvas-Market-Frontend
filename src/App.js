@@ -6,7 +6,7 @@ import Layout from './MyComponents/Layout';
 import Contact from './pages/Contact';
 import Sell from './pages/Sell';
 import Get from './MyComponents/Get';
-import Cart from './MyComponents/Cart';
+import Cart from './pages/Cart';
 import Painting from './pages//Painting';
 import Account from './pages/Account';
 import { OnScreenProvider } from './ContextProviders/OnScreenContext';
