@@ -311,8 +311,12 @@ export default function CustomerCare() {
                             </div>
                           ))}
                         </div>
-                        {section.content.cta && (
-                          <button className="cta-button">{section.content.cta}</button>
+                        {section.content.cta && section.content.type === 'policy' && (
+                          <div className="button-center-wrapper">
+                            <button className="cta-button" onClick={() => navigate('/contact')}>
+                              {section.content.cta}
+                            </button>
+                          </div>
                         )}
                       </div>
                     )}
@@ -350,7 +354,9 @@ export default function CustomerCare() {
                           </div>
                         )}
                         
-                        <button className="cta-button">Send us a Message</button>
+                        <div className="button-center-wrapper">
+                          <button className="cta-button" onClick={() => navigate('/contact')}>Send us a Message</button>
+                        </div>
                       </div>
                     )}
                   </div>
