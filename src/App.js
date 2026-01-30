@@ -1,15 +1,21 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './MyComponents/Layout';
+
+// PAGES:
 import Home from './pages/Home';
 import About from './pages/About';
-import Layout from './MyComponents/Layout';
 import Contact from './pages/Contact';
 import Sell from './pages/Sell';
-import Get from './MyComponents/Get';
+import Get from './pages/Get';
 import Cart from './pages/Cart';
 import Painting from './pages//Painting';
 import Account from './pages/Account';
+
+// CONTEXTPROVIDERS:
 import { OnScreenProvider } from './ContextProviders/OnScreenContext';
+
+// UTILS:
 import ScrollToTop from './utils/ScrollToTop';
 
 function App() {
@@ -26,8 +32,8 @@ function App() {
             <Route path="cart" element={<Layout body={<Cart />} />} />
             <Route path="sell" element={<Layout body={<Sell />} />} />
             <Route path="get" element={<Layout body={<Get />} />} />
- <Route path="painting" element={<Layout body={<Painting />} />} />
- <Route path="account" element={<Layout body={<Account />} />} />
+            <Route path="painting" element={<Layout body={<Painting />} />} />
+            <Route path="account" element={<Layout body={<Account />} />} />
             {/* <Route path="*" element={<About00 />} /> */}
           </Routes>
         </BrowserRouter>

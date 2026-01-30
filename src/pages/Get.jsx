@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Paintings from "./paintings";
+import Paintings from "../MyComponents/paintings";
 
 function Get() {
 
