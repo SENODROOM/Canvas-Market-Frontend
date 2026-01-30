@@ -9,9 +9,9 @@ import Contact from './pages/Contact';
 import Sell from './pages/Sell';
 import Get from './pages/Get';
 import Cart from './pages/Cart';
-import Painting from './pages//Painting';
+import Painting from './pages/Painting';
 import Account from './pages/Account';
-
+import CustomerCare from './pages/CustomerCare';
 // CONTEXTPROVIDERS:
 import { OnScreenProvider } from './ContextProviders/OnScreenContext';
 
@@ -34,6 +34,7 @@ function App() {
             <Route path="get" element={<Layout body={<Get />} />} />
             <Route path="painting" element={<Layout body={<Painting />} />} />
             <Route path="account" element={<Layout body={<Account />} />} />
+            <Route path="customercare" element={<Layout body={<CustomerCare/>} />} />
             {/* <Route path="*" element={<About00 />} /> */}
           </Routes>
         </BrowserRouter>

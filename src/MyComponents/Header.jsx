@@ -159,7 +159,12 @@ function Header() {
             </NavLink>
 
           </li>
-      
+         <li>
+            <NavLink to="/CustomerCare" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"}>
+              Customer Care
+            </NavLink>
+
+          </li>
 
         </ul>
 
@@ -182,7 +187,7 @@ function Header() {
         <NavLink to="/Sell" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Sell Paintings</NavLink>
         <NavLink to="/Get" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Get Paintings</NavLink>
        <NavLink to="/Account" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}><img src={profile}></img></NavLink>
-
+    <NavLink to="/CustomerCare" className={({ isActive }) => isActive ? "li-link active-link" : "li-link"} onClick={() => setMenuActive(false)}>Customer Care</NavLink>
       </div>
     </header>
   );
