@@ -218,7 +218,7 @@ function Get() {
                                                             <span className="price">${painting.price?.toFixed(2) || '0.00'}</span>
                                                         </div>
                                                         <button
-                                                            className="explore-btn"
+                                                            className="explore-button"
                                                             onClick={() => handleExplore(painting)}
                                                             disabled={!painting.inStock}
                                                         >
