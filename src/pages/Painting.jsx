@@ -1,3 +1,4 @@
+// ProductPage.jsx
 import React, { useState } from 'react';
 import { ArtworkDisplay } from '../MyComponents/ArtworkDisplay';
 import { ProductInfo } from '../MyComponents/ProductInfo';
@@ -5,12 +6,14 @@ import { DetailsTabs } from '../MyComponents/DetailsTabs';
 import { ReviewsSection } from '../MyComponents/ReviewsSection';
 import { CosmicBackground } from '../MyComponents/CosmicBackground';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useCart } from '../ContextProviders/CartContext';
 
 const ProductPage = () => {
   const [activeTab, setActiveTab] = useState('description');
   const [imageLoaded, setImageLoaded] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const product = location.state?.painting;
 
   // Safety check (important)
@@ -59,8 +62,8 @@ const ProductPage = () => {
   ];
 
   const handleBuyNow = () => {
-    console.log('Purchase initiated');
-    alert('Proceeding to checkout...');
+    addToCart(product);
+    navigate('/cart');
   };
 
   return (

@@ -12,8 +12,10 @@ import Cart from './pages/Cart';
 import Painting from './pages/Painting';
 import Account from './pages/Account';
 import CustomerCare from './pages/CustomerCare';
+
 // CONTEXTPROVIDERS:
 import { OnScreenProvider } from './ContextProviders/OnScreenContext';
+import { CartProvider } from './ContextProviders/CartContext'; // NEW IMPORT
 
 // UTILS:
 import ScrollToTop from './utils/ScrollToTop';
@@ -22,22 +24,24 @@ function App() {
   return (
     <>
       <OnScreenProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Layout body={<Home />} />} />
-            <Route index element={<Layout body={<Home />} />} />
-            <Route path="about" element={<Layout body={<About />} />} />
-            <Route path="contact" element={<Layout body={<Contact />} />} />
-            <Route path="cart" element={<Layout body={<Cart />} />} />
-            <Route path="sell" element={<Layout body={<Sell />} />} />
-            <Route path="get" element={<Layout body={<Get />} />} />
-            <Route path="painting" element={<Layout body={<Painting />} />} />
-            <Route path="account" element={<Layout body={<Account />} />} />
-            <Route path="customercare" element={<Layout body={<CustomerCare/>} />} />
-            {/* <Route path="*" element={<About00 />} /> */}
-          </Routes>
-        </BrowserRouter>
+        <CartProvider> {/* NEW WRAPPER */}
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Layout body={<Home />} />} />
+              <Route index element={<Layout body={<Home />} />} />
+              <Route path="about" element={<Layout body={<About />} />} />
+              <Route path="contact" element={<Layout body={<Contact />} />} />
+              <Route path="cart" element={<Layout body={<Cart />} />} />
+              <Route path="sell" element={<Layout body={<Sell />} />} />
+              <Route path="get" element={<Layout body={<Get />} />} />
+              <Route path="painting" element={<Layout body={<Painting />} />} />
+              <Route path="account" element={<Layout body={<Account />} />} />
+              <Route path="customercare" element={<Layout body={<CustomerCare/>} />} />
+              {/* <Route path="*" element={<About00 />} /> */}
+            </Routes>
+          </BrowserRouter>
+        </CartProvider> {/* CLOSE WRAPPER */}
       </OnScreenProvider>
     </>
   );
