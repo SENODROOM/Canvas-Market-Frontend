@@ -2,16 +2,38 @@
 import React, { useState } from 'react';
 import { Lock, Plus } from 'lucide-react';
 
+const API_BASE = 'http://localhost:5001';                          // ← only addition at top
+
 export function LoginScreen({ accounts, onLogin, onCreateNew }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);                  // ← new
 
-  const handleSubmit = (e) => {
+  // ↓ was sync, now async — fetches from backend instead of calling onLogin directly
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = onLogin(email, password);
-    if (!success) {
-      setError('Invalid email or password');
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${API_BASE}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        onLogin(data.user);                                        // ← same call as before, passes real user from DB
+      } else {
+        setError(data.message || 'Invalid email or password');
+      }
+    } catch (err) {
+      setError('Cannot connect to server. Is the backend running?');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -55,9 +77,9 @@ export function LoginScreen({ accounts, onLogin, onCreateNew }) {
 
           {error && <div className="error-message">{error}</div>}
 
-          <button type="submit" className="login-submit-btn">
+          <button type="submit" className="login-submit-btn" disabled={loading}>
             <Lock size={18} />
-            Sign In
+            {loading ? 'Signing in...' : 'Sign In'}               {/* ← text swap only, same class */}
           </button>
         </form>
 

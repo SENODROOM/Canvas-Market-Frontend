@@ -2,6 +2,8 @@
 import React, { useState, useRef } from 'react';
 import { Camera, Plus, X } from 'lucide-react';
 
+const API_BASE = 'http://localhost:5001';                          // ← only addition at top
+
 export function CreateAccountModal({ onClose, onCreate }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,12 +14,39 @@ export function CreateAccountModal({ onClose, onCreate }) {
     photo: null,
   });
 
+  const [loading, setLoading] = useState(false);                  // ← new: tracks request in-flight
+  const [error, setError]     = useState('');                     // ← new: shows server errors
+
   const fileInputRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  // ↓ was sync, now async — everything else inside is the same logic
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.name && formData.email && formData.password) {
-      onCreate(formData);
+
+      setLoading(true);                                            // ← disable button while waiting
+      setError('');
+
+      try {
+        const response = await fetch(`${API_BASE}/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          onCreate(data.user);                                     // ← same call as before, just with real user from DB
+        } else {
+          setError(data.message || 'Could not create account.');
+        }
+      } catch (err) {
+        setError('Cannot connect to server. Is the backend running?');
+      } finally {
+        setLoading(false);                                         // ← re-enable button either way
+      }
+
     }
   };
 
@@ -116,9 +145,11 @@ export function CreateAccountModal({ onClose, onCreate }) {
             />
           </div>
 
-          <button type="submit" className="submit-btn">
+          {error && <p className="error-message">{error}</p>}     {/* ← only shows if server returns error */}
+
+          <button type="submit" className="submit-btn" disabled={loading}>
             <Plus size={18} />
-            Create Account
+            {loading ? 'Creating...' : 'Create Account'}          {/* ← text swap only, same class */}
           </button>
         </form>
       </div>
