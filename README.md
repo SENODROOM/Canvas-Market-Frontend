@@ -391,12 +391,12 @@ The app will open at `http://localhost:3000`
 - [ ] Complete component library
 
 ### Q2 2026 - Core Features 🔄
-- [ ] Backend API development
+- [x] Backend API development
 - [ ] User authentication system
 - [ ] Product listing CRUD operations
-- [ ] Shopping cart implementation
+- [x] Shopping cart implementation
 - [ ] Payment gateway integration
-- [ ] Order management system
+- [x] Order management system
 
 ### Q3 2026 - Enhanced UX
 - [ ] Advanced search & filters
@@ -502,7 +502,7 @@ We welcome contributions from the community! Here's how you can help:
 
 ## 📊 Project Statistics
 
-- **Total Commits**: 53
+- **Total Commits**: 82
 - **Contributors**: 2
 - **Code Distribution**:
   - CSS: 67.0%
@@ -536,7 +536,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔗 Related Repositories
 
-- Backend API: *Coming Soon*
+- Backend: https://github.com/SENODROOM/Canvas-Market-Backend.git
 - Mobile App: *Coming Soon*
 - Admin Dashboard: *Coming Soon*
 
