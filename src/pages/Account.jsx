@@ -6,8 +6,9 @@ import { CreateAccountModal } from '../MyComponents/CreateAccountModal';
 import { AccountHeader } from '../MyComponents/AccountHeader';
 import { ProfileSection } from '../MyComponents/ProfileSection';
 import { WelcomeScreen } from '../MyComponents/WelcomeScreen';
+import { useCart } from '../ContextProviders/CartContext';  // ← ADD THIS LINE
 
-const API_BASE = 'http://localhost:5001';                          // ← only new line at top
+const API_BASE = 'http://localhost:5001';
 
 export default function AccountPage() {
   const [accounts, setAccounts] = useState([]);
@@ -19,26 +20,26 @@ export default function AccountPage() {
   const [showLogin, setShowLogin] = useState(false);
   const [editedData, setEditedData] = useState({});
   const fileInputRef = useRef(null);
+  
+  const { setUserId, fetchCart } = useCart();  // ← ADD THIS LINE
 
   // ── On mount: restore session from localStorage ──────────────────
-  // We still use localStorage only for session persistence (who is logged in),
-  // but account data always comes from the backend.
   useEffect(() => {
     const savedCurrentId  = localStorage.getItem('currentAccountId');
     const savedLoginStatus = localStorage.getItem('isLoggedIn');
-    const savedAccounts   = localStorage.getItem('cachedAccounts');  // lightweight cache
+    const savedAccounts   = localStorage.getItem('cachedAccounts');
 
     if (savedLoginStatus === 'true' && savedCurrentId && savedAccounts) {
       const parsedAccounts = JSON.parse(savedAccounts);
       setAccounts(parsedAccounts);
-      setCurrentAccountId(savedCurrentId);                           // id is now a MongoDB _id string
+      setCurrentAccountId(savedCurrentId);
       setIsLoggedIn(true);
+      setUserId(savedCurrentId);  // Set cart userId on page load
     } else if (savedAccounts) {
-      // Accounts exist but not logged in — show login
       setAccounts(JSON.parse(savedAccounts));
       setShowLogin(true);
     }
-  }, []);
+  }, [setUserId]);  // Add setUserId to dependency array
 
   // ── Save session to localStorage whenever login state changes ─────
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function AccountPage() {
     if (currentAccount) {
       setEditedData(currentAccount);
     }
-  }, [currentAccountId]);
+  }, [currentAccountId, currentAccount]);
 
   // ── Photo upload (unchanged) ──────────────────────────────────────
   const handlePhotoUpload = (e) => {
@@ -87,7 +88,6 @@ export default function AccountPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Update the account in local list with fresh data from DB
         setAccounts(accounts.map(acc =>
           acc.id === currentAccountId ? data.user : acc
         ));
@@ -110,21 +110,21 @@ export default function AccountPage() {
     setShowAccountSwitcher(false);
     setIsEditing(false);
     setIsLoggedIn(true);
+    setUserId(accountId);  // Load the switched account's cart
+    fetchCart(accountId);  // Fetch cart for the switched account
   };
 
   // ── Create account → POST /register ──────────────────────────────
-  // onCreate is called by CreateAccountModal with the real user from DB
   const createNewAccount = (newUser) => {
     setAccounts(prev => [...prev, newUser]);
     setCurrentAccountId(newUser.id);
     setShowCreateAccount(false);
     setIsLoggedIn(true);
+    setUserId(newUser.id);  // Set cart for new user
   };
 
   // ── Login → POST /login (handled inside LoginScreen) ─────────────
-  // onLogin is called by LoginScreen with the real user object from DB
   const handleLogin = (user) => {
-    // Check if this account is already in local list, if not add it
     setAccounts(prev => {
       const exists = prev.find(acc => acc.id === user.id);
       return exists ? prev : [...prev, user];
@@ -132,6 +132,7 @@ export default function AccountPage() {
     setCurrentAccountId(user.id);
     setIsLoggedIn(true);
     setShowLogin(false);
+    // setUserId is already called in LoginScreen.jsx
   };
 
   // ── Logout ────────────────────────────────────────────────────────
@@ -139,8 +140,14 @@ export default function AccountPage() {
     setIsLoggedIn(false);
     setCurrentAccountId(null);
     setShowLogin(true);
+    
+    // Clear localStorage
     localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('currentAccountId');
+    localStorage.removeItem('user');
+    
+    // Clear cart context
+    setUserId(null);
   };
 
   const removePhoto = () => {

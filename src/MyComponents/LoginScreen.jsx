@@ -1,16 +1,17 @@
-// components/LoginScreen.jsx
+// LoginScreen.jsx
 import React, { useState } from 'react';
 import { Lock, Plus } from 'lucide-react';
+import { useCart } from '../ContextProviders/CartContext';
 
-const API_BASE = 'http://localhost:5001';                          // ← only addition at top
+const API_BASE = 'http://localhost:5001';
 
 export function LoginScreen({ accounts, onLogin, onCreateNew }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);                  // ← new
+  const [loading, setLoading] = useState(false);
+  const { setUserId, fetchCart } = useCart();
 
-  // ↓ was sync, now async — fetches from backend instead of calling onLogin directly
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -26,11 +27,22 @@ export function LoginScreen({ accounts, onLogin, onCreateNew }) {
       const data = await response.json();
 
       if (response.ok) {
-        onLogin(data.user);                                        // ← same call as before, passes real user from DB
+        // Save user data to localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Update cart context with userId
+        setUserId(data.user.id);
+        
+        // Fetch user's cart from backend
+        fetchCart(data.user.id);
+        
+        // Call parent's onLogin callback
+        onLogin(data.user);
       } else {
         setError(data.message || 'Invalid email or password');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('Cannot connect to server. Is the backend running?');
     } finally {
       setLoading(false);
@@ -58,6 +70,7 @@ export function LoginScreen({ accounts, onLogin, onCreateNew }) {
                 setError('');
               }}
               placeholder="your.email@example.com"
+              disabled={loading}
             />
           </div>
 
@@ -72,6 +85,7 @@ export function LoginScreen({ accounts, onLogin, onCreateNew }) {
                 setError('');
               }}
               placeholder="Enter your password"
+              disabled={loading}
             />
           </div>
 
@@ -79,7 +93,7 @@ export function LoginScreen({ accounts, onLogin, onCreateNew }) {
 
           <button type="submit" className="login-submit-btn" disabled={loading}>
             <Lock size={18} />
-            {loading ? 'Signing in...' : 'Sign In'}               {/* ← text swap only, same class */}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
 
