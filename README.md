@@ -19,7 +19,7 @@
 - [Development Workflow](#-development-workflow)
 - [Code of Conduct](#-code-of-conduct)
 - [License](#-license)
-- [Contact](#-contact)
+- [Acknowledgments](#-acknowledgments)
 ---
 
 ## 🌟 Overview
