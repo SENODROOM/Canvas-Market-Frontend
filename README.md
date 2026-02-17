@@ -7,7 +7,7 @@
 > A modern, full-featured online marketplace for buying and selling paintings and artwork - connecting artists directly with art enthusiasts.
 
 ## 📋 Table of Contents
-- [Overview](#overview)
+- [Overview](#-overview)
 - [Architecture](#architecture)
 - [Sub-Repositories](#sub-repositories)
   - [Frontend Repository](#frontend-repository)
