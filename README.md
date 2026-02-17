@@ -8,18 +8,15 @@
 
 ## 📋 Table of Contents
 - [Overview](#-overview)
-- [Architecture](#-architecture)
-- [Sub-Repositories](#-sub-repositories)
-  - [Frontend Repository](#-frontend-repository)
-  - [Backend Repository](#-backend-repository)
+- [Current Status](#-current-status)
+- [Features Implemented](#-features-implemented)
+- [Planned Features](#-planned-features)
+- [Tech Stack](#-tech-stack)
+- [Project Architecture](#-project-architecture)
 - [Getting Started](#-getting-started)
+- [Development Roadmap](#-development-roadmap)
+- [Future Enhancements](#-future-enhancements)
 - [Contributing](#-contributing)
-  - [Contributing to Frontend](#-contributing-to-frontend)
-  - [Contributing to Backend](#-contributing-to-backend)
-- [Development Workflow](#-development-workflow)
-- [Code of Conduct](#-code-of-conduct)
-- [License](#-license)
-- [Acknowledgments](#-acknowledgments)
 ---
 
 ## 🌟 Overview
