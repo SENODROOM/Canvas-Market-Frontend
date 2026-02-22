@@ -1,4 +1,4 @@
-# 🎨 Canvas Market - Online Painting Marketplace
+# 🎨 Canvas Market - Frontend
 
 [![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://canvas-market.vercel.app)
 [![React](https://img.shields.io/badge/React-18.x-blue.svg)](https://reactjs.org/)
